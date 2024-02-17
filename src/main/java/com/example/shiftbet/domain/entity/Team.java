@@ -1,5 +1,9 @@
 package com.example.shiftbet.domain.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,17 +11,22 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 public class Team {
 
-    public String name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-    public String description;
+    private String name;
 
-    public int wins;
+    private String description;
 
-    public int loses;
+    private int wins;
 
-    public int draws;
+    private int loses;
 
-    public String logoUrl;
+    private int draws;
+
+    private String logoUrl;
 }
