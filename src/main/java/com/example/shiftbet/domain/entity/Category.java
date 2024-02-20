@@ -1,13 +1,14 @@
 package com.example.shiftbet.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
-@Data
+@Getter
+@Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -21,5 +22,9 @@ public class Category {
     private String imageUrl;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
-    private List<Game> matches;
+    private List<Game> games;
+
+    @OneToMany(mappedBy = "parentCategory", cascade = CascadeType.ALL)
+    private List<Subcategory> subcategories;
+
 }

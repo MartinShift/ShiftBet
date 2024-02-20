@@ -1,9 +1,13 @@
 package com.example.shiftbet.domain.entity;
 
 import com.example.shiftbet.domain.entity.enums.BetTypes;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -11,19 +15,18 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Bet {
+public class GameResult {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int Id;
+    private int id;
 
-    private double amount;
-
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "game_id")
     private Game game;
 
 
-    private BetTypes betType;
+    private BetTypes winBet;
 
-    //private User user;
+
 }

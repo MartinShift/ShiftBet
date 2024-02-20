@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--/*@thymesVar id="BetTypes" type="com.example.shiftbet.domain.entity.enums.BetTypes"*/-->
+<head>
+    <style>
+
+    </style>
+    <!-- <link rel="stylesheet" href="/css/styles.css"> -->
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+<div id="__next">
+    <div class="mx-auto max-w-[1984px]">
+        <div th:insert="layout/header :: header"></div>
+        <div
+                class="fixed z-20 w-full max-w-[1984px] duration-500 ease-in-out translate-y-[-100%] top-[calc(theme(spacing.header-offset)]">
+        </div>
+        <main class="mb-8 min-h-[50vh]">
+            <div
+                    class="mt-4 flex flex-col justify-center md:mx-8 md:flex-row md:gap-6 xl:mx-auto xl:px-8 [@media(min-width:2560px)]:gap-[72px]">
+                <div
+                        class="md:h-[calc(100vh-theme(spacing.header-offset)-32px)] sticky md:top-[calc(theme(spacing.header-offset)+16px)] h-[300px] flex-1 md:max-w-[280px] xl:max-w-[320px]">
+                    <div style="position: relative; overflow: hidden; width: 100%; height: 100%;">
+                        <div
+                                style="position: absolute; inset: 0px; overflow: scroll; margin-right: -15px; margin-bottom: -15px;">
+                            <div class="mb-2 flex flex-col">
+                                <div class="my-4 border-y-default border-surface-middle py-4">
+                                    <div
+                                            class="flex justify-between bg-surface-dark p-2 hover:bg-surface-middle pointer-events-none">
+                                        <div
+                                                class="flex items-center gap-2 uppercase typo-sm-2 fill-primary-white text-primary-white">
+                                            <svg viewBox="0 0 24 24" class="shrink-0 h-6 w-6">
+                                                <use xlink:href="#top-events_a760a3"></use>
+                                            </svg>Найкраще
+                                        </div>
+                                    </div><a class="flex gap-2 p-2 hover:bg-surface-middle"
+                                             data-category="Filters - Featured" data-action="Select tournament"
+                                             href="/uk-ua/sports/tournament/uefa-champions-league-27-06">
+                                    <div
+                                            class="flex h-6 w-6 items-center justify-center rounded-default bg-surface-light">
+                                        <div class="h-[18px] w-[18px]"><img alt="" loading="lazy" width="18"
+                                                                            height="18" decoding="async" data-nimg="1"
+                                                                            src="//cdn.gin.bet/tournaments/thumb36x36_kisspng-uefa-champions-league-france-ligue-1-premier-leagu-league-5add7cce436565842675431524464846276162d902f1b2fbd458906231.png"
+                                                                            style="color: transparent; object-fit: contain;"></div>
+                                    </div>
+                                    <div class="flex flex-1 items-center overflow-hidden text-primary-white">
+                                        <div class="max-w-full truncate font-normal typo-sm-1">УЄФА Ліга
+                                            Чемпіонів
+                                        </div>
+                                    </div>
+                                </a>
+                                </div>
+                            </div><a data-test="all-games" href="/uk-ua">
+                            <div
+                                    class="flex items-center gap-2 bg-surface-dark fill-primary-white p-2 uppercase text-primary-white typo-sm-2">
+                                <svg viewBox="0 0 24 24" class="shrink-0 h-6 w-6">
+                                    <use xlink:href="#cybersport_default_22b9dc"></use>
+                                </svg>
+                                <div>Усі види спорту</div>
+                            </div>
+                        </a>
+                            <div><a data-category="Filters - Categorizer" data-action="Open sport"
+                                    href="/uk-ua?sportId=esports_counter_strike">
+                                <div class="flex cursor-pointer justify-between gap-2 overflow-hidden p-2 bg-surface-dark text-grey-500 hover:bg-surface-middle hover:text-primary-white"
+                                     data-test="categorizer-sport-list-content">
+                                    <div class="overflow-hidden flex items-center gap-2">
+                                        <div
+                                                class="flex h-6 min-h-[24px] w-6 min-w-[24px] items-center justify-center">
+                                                    <span class="relative inline-flex h-6 w-6 shrink-0"><img alt=""
+                                                                                                             loading="lazy" width="24" height="24" decoding="async"
+                                                                                                             data-nimg="1"
+                                                                                                             src="/file/media:65d3b206c4fb20fdc67ba340bee095735023fe3690"
+                                                                                                             style="color: transparent;"></span>
+                                        </div>
+                                        <div class="truncate typo-sm-1"
+                                             data-test="categorizer-sport-list-content-title">Counter-Strike
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <div class="flex h-6 min-h-[24px] w-6 min-w-[24px] items-center justify-center"
+                                             data-test="categorizer-desktop__label"><svg viewBox="0 0 24 24"
+                                                                                         class="shrink-0 fill-[#550000] text-red-300 h-6 w-6">
+                                            <use xlink:href="#live_07ac48"></use>
+                                        </svg></div>
+                                        <div class="flex h-6 min-h-[24px] w-6 min-w-[24px] items-center justify-center"
+                                             data-test="categorizer-desktop__arrow-icon"><svg viewBox="0 0 24 24"
+                                                                                              class="shrink-0 rotate-180 fill-grey-500 h-6 w-6">
+                                            <use xlink:href="#branch-more-up_107f56"></use>
+                                        </svg></div>
+                                    </div>
+                                </div>
+                            </a></div>
+
+                        </div>
+                        <div
+                                style="position: absolute; height: 6px; transition: opacity 200ms ease 0s; opacity: 0; right: 2px; bottom: 2px; left: 2px; border-radius: 3px; visibility: hidden;">
+                            <div
+                                    style="position: relative; display: block; height: 100%; cursor: pointer; border-radius: inherit; background-color: rgba(0, 0, 0, 0.2); width: 0px;">
+                            </div>
+                        </div>
+                        <div
+                                style="position: absolute; width: 6px; transition: opacity 200ms ease 0s; opacity: 0; right: 2px; bottom: 2px; top: 2px; border-radius: 3px; visibility: visible;">
+                            <div
+                                    style="position: relative; display: block; width: 100%; cursor: pointer; border-radius: inherit; background-color: rgba(0, 0, 0, 0.2); height: 321px; transform: translateY(0px);">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="z-1 flex-1 md:w-0">
+                    <div class="mx-2  md:mx-0">
+                        <div class="mb-4 flex flex-col gap-2">
+                            <div class="flex flex-col gap-[1px] text-primary-white">
+                                <div
+                                        class="relative flex h-10 items-center gap-2 bg-surface-middle px-4 py-3  typo-sm-1 md:h-14 md:px-6">
+                                    <img th:src="${team.country.flagUrl}" class="w-4" alt="flag">
+                                    <div th:text="${team.country.name}"></div>
+                                </div>
+                                <div
+                                        class="flex items-center gap-2 bg-surface-middle p-4 text-primary-white typo-md-2 md:px-6 md:py-4">
+                                    <div class="flex h-10 w-10 items-center justify-center rounded-full bg-surface-light p-2">
+                                        <img
+                                            alt="" loading="lazy" width="28" height="28" decoding="async" data-nimg="1"
+                                            th:src="${team.logoUrl}"
+                                            style="color: transparent; object-fit: contain;"></div>
+                                    <h1 th:text="${team.name}"></h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-2 md:gap-1">
+                            <h2 class="font-bold text-primary-white typo-md-1">Last Results</h2>
+                            <div class="flex-row align-middle">
+                                <div th:each="result : ${teamResults}" class="relative h-full w-full" data-test="sport-event-in-view-subscription">
+                                    <div class="mb-2"><a data-action="Click on link"
+                                                         href="/uk-ua/esports/tournament/res-regional-series-sea-02-02">
+                                        <div class="flex h-10 items-center gap-2 bg-surface-middle px-4 my-2"
+                                             data-test="tournament-header"><span
+                                                class="relative inline-flex h-6 w-6 shrink-0"><img alt="" loading="lazy"
+                                                                                                   width="24" height="24" decoding="async" data-nimg="1"
+                                                                                                   th:src="${result.game.subcategory.imageUrl}"
+                                                                                                   style="color: transparent;"></span>
+                                            <div class="truncate text-primary-white typo-sm-1" data-test="tournament-name" th:text="${result.game.title}"></div>
+                                        </div>
+                                    </a></div><a data-action="Click on link"
+                                                 href="/uk-ua/esports/match/ihc-esports-vs-talon-esports-07-02">
+                                    <div
+                                            class="after:absolute after:left-0 after:top-[48px] after:h-[1px] after:w-full after:bg-surface-dark after:content-[''] relative flex flex-col bg-surface-middle p-4 pt-0  mb-2 sm:h-[185px] sm:flex-row sm:gap-x-6 items-center">
+                                        <div class="flex h-full w-full">
+                                            <div class="flex w-0 grow flex-col items-start gap-4 bg-surface-middle">
+                                                <div class="flex h-12 items-center gap-4">
+                                                    <div class="flex h-12 items-center gap-2">
+                                                        <div data-action="Toggle favorite" data-label="add"
+                                                             data-test="favorite-button"><svg viewBox="0 0 24 24"
+                                                                                              class="shrink-0 cursor-pointer fill-primary-white h-6 w-6">
+                                                            <use xlink:href="#favorite-border_38883b"></use>
+                                                        </svg></div>
+                                                        <div class="text-sm text-grey-500 opacity-100">
+                                                            <div th:text="${#temporals.format(result.game.endDate, 'HH:mm')}"></div>
+                                                            <div th:text="${#temporals.format(result.game.endDate, 'dd MM')}"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                        class="flex h-full w-full items-center self-center bg-surface-middle  sm:self-start">
+                                                    <div class="mb-2 mt-1 flex w-full justify-between gap-4 sm:mt-0 sm:flex-col"
+                                                         data-action="Click on title">
+                                                        <div class="flex w-full min-w-0 items-center overflow-hidden gap-3 sm:gap-0 flex-col text-center sm:flex-row sm:text-start"
+                                                             data-test="competitor">
+                                                            <div>
+                                                                <div
+                                                                        class="flex items-center justify-center overflow-hidden rounded-full bg-surface-light h-10 w-10">
+                                                                    <div
+                                                                            class="flex max-h-[28px] min-h-[28px] min-w-[28px] max-w-[28px]">
+                                                                        <img alt="" loading="lazy" width="40" height="40"
+                                                                             decoding="async" data-nimg="1"
+                                                                             th:src="${result.game.team1.logoUrl}"
+                                                                             style="color: transparent; object-fit: contain;">
+                                                                    </div>
+                                                                </div>
+                                                            </div><span
+                                                                class="mx-2 text-primary-white typo-sm-1 w-full truncate typo-sm-1"
+                                                                data-test="competitor-title" th:text="${result.game.team1.name}"></span>
+                                                        </div>
+                                                        <div class="flex w-full min-w-0 items-center overflow-hidden gap-3 sm:gap-0 flex-col text-center sm:flex-row sm:text-start"
+                                                             data-test="competitor">
+                                                            <div>
+                                                                <div
+                                                                        class="flex items-center justify-center overflow-hidden rounded-full bg-surface-light h-10 w-10">
+                                                                    <div
+                                                                            class="flex max-h-[28px] min-h-[28px] min-w-[28px] max-w-[28px]">
+                                                                        <img alt="" loading="lazy" width="40" height="40"
+                                                                             decoding="async" data-nimg="1"
+                                                                             th:src="${result.game.team2.logoUrl}"
+                                                                             style="color: transparent; object-fit: contain;">
+                                                                    </div>
+                                                                </div>
+                                                            </div><span
+                                                                class="mx-2 text-primary-white typo-sm-1 w-full truncate typo-sm-1"
+                                                                data-test="competitor-title" th:text="${result.game.team2.name}"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex w-full overflow-hidden h-full">
+                                            <div class="flex w-full items-stretch" data-test="top-markets">
+                                                <div class="flex h-full w-full min-w-0 flex-1 flex-col sm:not-last:mr-2">
+                                                    <div class="flex h-full w-full flex-col self-stretch">
+                                                        <div class="hidden h-12 shrink-0 items-center sm:flex">
+                                                            <div
+                                                                    class="line-clamp-2 max-w-full overflow-hidden text-ellipsis font-normal text-primary-white typo-sm-1">
+                                                                1x2</div>
+                                                        </div>
+                                                        <div class="flex h-full w-full pt-4 sm:h-0 sm:grow sm:flex-col">
+                                                            <div title="IHC Esports"
+                                                                 class="flex min-w-0 flex-1 cursor-not-allowed rounded-default p-2 sm:h-0 sm:not-last:mr-0 bg-surface-light hover:bg-surface-dark sm:not-last:mb-1 not-last:mr-2 hover:!bg-primary-white/[0.3] !bg-grey-900 hover:!bg-grey-900 bg-surface-light hover:!bg-surface-light"
+                                                                 data-action="Select odd"
+                                                                 data-label="5:d83d4825-84cf-462d-884c-969f08a01270~20~1"
+                                                                 data-test="odd-button  odd-button--is-loss ">
+                                                                <div
+                                                                        class="relative flex h-full w-full items-center justify-items-start">
+                                                                    <div class="truncate capitalize text-primary-white typo-sm-2 mr-1"
+                                                                         data-test="odd-button__title" th:text="${result.game.team1.name}"></div>
+                                                                     <div class="mr-1 shrink-0 typo-sm-1 text-violet-300 !text-grey-500"
+                                                                         data-test="odd-button__result" th:text="${result.winBet == BetTypes.TEAM1_WIN ? 'Win' : 'Lose'}"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div title="Нічия"
+                                                                 class="flex min-w-0 flex-1 cursor-not-allowed rounded-default p-2 sm:h-0 sm:not-last:mr-0 bg-surface-light hover:bg-surface-dark sm:not-last:mb-1 not-last:mr-2 hover:!bg-primary-white/[0.3] !bg-grey-900 hover:!bg-grey-900 bg-surface-light hover:!bg-surface-light"
+                                                                 data-action="Select odd"
+                                                                 data-label="5:d83d4825-84cf-462d-884c-969f08a01270~20~2"
+                                                                 data-test="odd-button  odd-button--is-loss ">
+                                                                <div
+                                                                        class="relative flex h-full w-full items-center justify-items-start">
+                                                                    <div class="truncate capitalize text-primary-white typo-sm-2 mr-1"
+                                                                         data-test="odd-button__title">Draw</div>
+                                                                    <div class="mr-1 shrink-0 typo-sm-1 text-violet-300 !text-grey-500"
+                                                                         data-test="odd-button__result" th:text="${result.winBet == BetTypes.DRAW ? 'Win' : 'Lose'}"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div title="Talon Esports"
+                                                                 class="flex min-w-0 flex-1 cursor-not-allowed rounded-default p-2 sm:h-0 sm:not-last:mr-0 bg-surface-light hover:bg-surface-dark sm:not-last:mb-1 not-last:mr-2 hover:!bg-primary-white/[0.3] !bg-green-900 hover:!bg-green-900 bg-surface-light hover:!bg-surface-light"
+                                                                 data-action="Select odd"
+                                                                 data-label="5:d83d4825-84cf-462d-884c-969f08a01270~20~3"
+                                                                 data-test="odd-button odd-button--is-win  ">
+                                                                <div
+                                                                        class="relative flex h-full w-full items-center justify-items-start">
+                                                                    <div class="truncate capitalize text-primary-white typo-sm-2 mr-1"
+                                                                         data-test="odd-button__title" th:text="${result.game.team2.name}"></div>
+                                                                    <div class="mr-1 shrink-0 typo-sm-1 text-violet-300 !text-grey-500"
+                                                                         data-test="odd-button__result"  th:text="${result.winBet == BetTypes.TEAM2_WIN ? 'Win' : 'Lose'}"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+</div>
+</body>

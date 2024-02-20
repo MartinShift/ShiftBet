@@ -1,15 +1,16 @@
 package com.example.shiftbet.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -22,6 +23,7 @@ public class Game {
     private String title;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "category_id")
     private Category category;
 
@@ -45,4 +47,13 @@ public class Game {
 
     @OneToMany(mappedBy = "game", cascade = CascadeType.ALL)
     private List<Bet> bets;
+
+    private boolean isBettable;
+
+    @ManyToOne
+    @JoinColumn(name = "subcategory_id")
+    private Subcategory subcategory;
+
+    @OneToOne(mappedBy = "game", cascade = CascadeType.ALL)
+    private GameResult gameResult;
 }
