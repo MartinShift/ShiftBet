@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+
+    </style>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<div th:fragment="team-fragment(team)" class="flex w-full min-w-0 items-center overflow-hidden flex-row text-start"
+     data-test="competitor">
+    <div>
+        <div
+                class="flex items-center justify-center overflow-hidden rounded-full bg-surface-light h-10 w-10">
+            <div
+                    class="flex max-h-[28px] min-h-[28px] min-w-[28px] max-w-[28px]">
+                <img alt="" loading="lazy" width="40"
+                     height="40" decoding="async"
+                     data-nimg="1"
+                     th:src="${team.logoUrl}"
+                     style="color: transparent; object-fit: contain;">
+            </div>
+        </div>
+    </div><span
+        class="mx-2 text-primary-white typo-sm-1 w-full truncate typo-sm-1"
+        data-test="competitor-title" th:text="${team.name}"></span>
+</div>
+</body>

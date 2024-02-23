@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Game Result</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div th:replace="fragments/admin-header :: admin-header"></div>
+<div class="container">
+    <h1>Select Game Result</h1>
+    <form th:action="@{/game/result}" th:object="${gameResult}" method="post">
+        <input type="hidden" name="ownId" th:field="${id}">
+        <input type="hidden" name="gameId" th:field="*{game.id}">
+        <input type="text" class="form-control mt-3" th:value="*{game.title}" readonly>
+        <div class="form-group mt-4">
+            <label for="result">Select Result:</label>
+            <select class="form-control" id="result" th:field="*{winBet}">
+                <option value="TEAM1_WIN">Team 1 Win</option>
+                <option value="DRAW">Draw</option>
+                <option value="TEAM2_WIN">Team 2 Win</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

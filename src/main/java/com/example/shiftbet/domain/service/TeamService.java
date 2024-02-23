@@ -8,24 +8,16 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
+
 @Service
 public class TeamService {
-
-    private final GameRepository gameRepository;
     private final TeamRepository teamRepository;
-    private final CategoryRepository categoryRepository;
-    private final SubcategoryRepository subcategoryRepository;
-
-    private  final CountryRepository countryRepository;
 
     private  final  GameResultRepository gameResultRepository;
     @Autowired
-    public TeamService(GameRepository gameRepository, TeamRepository teamRepository, CategoryRepository categoryRepository, SubcategoryRepository subcategoryRepository, CountryRepository countryRepository, GameResultRepository gameResultRepository) {
-        this.gameRepository = gameRepository;
+    public TeamService(TeamRepository teamRepository, GameResultRepository gameResultRepository) {
         this.teamRepository = teamRepository;
-        this.categoryRepository = categoryRepository;
-        this.subcategoryRepository = subcategoryRepository;
-        this.countryRepository = countryRepository;
         this.gameResultRepository = gameResultRepository;
     }
 
@@ -42,6 +34,27 @@ public class TeamService {
     public List<GameResult> getTeamGames(long id)
     {
     return gameResultRepository.findByGameTeam1IdOrGameTeam2Id(id,id);
+    }
+
+    public List<Team> getAll() {
+        return teamRepository.findAll();
+    }
+
+    public Team get(long id) {
+        return teamRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Team not found with id: " + id));
+    }
+
+    public void add(Team  team) {
+        teamRepository.save(team);
+    }
+    public void update(long id, Team team) {
+        teamRepository.save(team);
+    }
+    public void delete(long id) {
+        Team team = teamRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Team not found with id: " + id));
+        teamRepository.delete(team);
     }
 
 }

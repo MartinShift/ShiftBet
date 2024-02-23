@@ -2,13 +2,16 @@ package com.example.shiftbet.domain.service;
 
 import com.example.shiftbet.domain.repository.*;
 import com.example.shiftbet.domain.entity.*;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.time.LocalDate;
+
 import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
+
 @Service
+@Transactional
 public class GameService {
 
     private final GameRepository gameRepository;
@@ -16,13 +19,15 @@ public class GameService {
     private final CategoryRepository categoryRepository;
     private final SubcategoryRepository subcategoryRepository;
 
-    private  final CountryRepository countryRepository;
+    private final BetRepository betRepository;
+    private final CountryRepository countryRepository;
     @Autowired
-    public GameService(GameRepository gameRepository, TeamRepository teamRepository, CategoryRepository categoryRepository, SubcategoryRepository subcategoryRepository, CountryRepository countryRepository) {
+    public GameService(GameRepository gameRepository, TeamRepository teamRepository, CategoryRepository categoryRepository, SubcategoryRepository subcategoryRepository, BetRepository betRepository, CountryRepository countryRepository) {
         this.gameRepository = gameRepository;
         this.teamRepository = teamRepository;
         this.categoryRepository = categoryRepository;
         this.subcategoryRepository = subcategoryRepository;
+        this.betRepository = betRepository;
         this.countryRepository = countryRepository;
     }
 
@@ -66,7 +71,6 @@ public class GameService {
 
         Game game = new Game();
         game.setTitle("IEM Katowice 2020 1/2 final");
-        game.setBettable(true);
         game.setTeam1(team1);
         game.setTeam2(team2);
         game.setCategory(category);
@@ -85,7 +89,50 @@ public class GameService {
 
     public List<Game> getBettableGames()
     {
-        return gameRepository.findByIsBettableIsTrue();
+        return gameRepository.findIsBetweenBeginningAndEnd();
+    }
+    public List<Game> getAll() {
+        return gameRepository.findAll();
     }
 
+    public Game get(long id) {
+        return gameRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Category not found with id: " + id));
+    }
+
+    public void add(Game  category) {
+        gameRepository.save(category);
+    }
+    public void update(long id, Game category) {
+        gameRepository.save(category);
+    }
+    public void delete(long id) {
+        Game category = gameRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Category not found with id: " + id));
+        gameRepository.delete(category);
+    }
+
+    public void distributeBets(GameResult result)
+    {
+        Game game = result.getGame();
+        List<Bet> bets = result.getGame().getBets().stream().filter(s-> s.getBetType() == result.getWinBet()).toList();
+        double winCoefficient = 0;
+        switch (result.getWinBet())
+        {
+            case TEAM1_WIN -> winCoefficient = game.getTeam1Coefficient();
+            case DRAW -> winCoefficient = game.getDrawCoefficient();
+            case TEAM2_WIN -> winCoefficient = game.getTeam2Coefficient();
+        }
+
+        //bets.forEach(b-> b.better.balance += b.amount * result.winCoefficient);
+        betRepository.deleteAll(bets);
+    }
+    public List<Game> getActiveGames()
+    {
+        return getAll().stream().filter(g-> g.getEndDate().isAfter(LocalDateTime.now())).toList();
+    }
+    public List<Game> getFinishedGames()
+    {
+        return getAll().stream().filter(g-> g.getEndDate().isBefore(LocalDateTime.now()) && g.getGameResult() == null).toList();
+    }
 }

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Categories</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div th:replace="fragments/admin-header :: admin-header"></div>
+<div class="container mt-5">
+    <h2>View Categories</h2>
+    <a href="/category/add" class="btn btn-primary mb-3">Add Category</a>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="category : ${categories}">
+            <td th:text="${category.id}"></td>
+            <td th:text="${category.name}"></td>
+            <td><img th:src="@{{imageName}(imageName=${category.imageUrl})}" width=auto; height="32" alt="Category Image"></td>
+            <td>
+                <a th:href="@{/category/edit/{id}(id=${category.id})}" class="btn btn-primary btn-sm">Edit</a>
+                <a th:href="@{/category/delete/{id}(id=${category.id})}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

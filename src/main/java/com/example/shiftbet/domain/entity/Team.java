@@ -3,6 +3,8 @@ package com.example.shiftbet.domain.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @Builder
@@ -30,4 +32,10 @@ public class Team {
     @ManyToOne
     @JoinColumn(name = "country_id")
     private Country country;
+
+    @OneToMany(mappedBy = "team1")
+    private List<Game> gamesAsTeam1;
+
+    @OneToMany(mappedBy = "team2")
+    private List<Game> gamesAsTeam2;
 }

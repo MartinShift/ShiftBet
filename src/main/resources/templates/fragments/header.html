@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <style>
 
@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-<header class="sticky top-0 z-80" data-test="header">
+<header class="sticky top-0 z-80" data-test="header"  th:fragment="header">
     <div class="bg-surface-dark py-2 flex justify-center" data-test="header__wrapper">
         <div class="mx-auto flex w-[90%] items-center" data-test="header__container">
             <div data-test="header__logo" class="flex-none">

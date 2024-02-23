@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+
+    </style>
+    <!-- <link rel="stylesheet" href="/css/styles.css"> -->
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+<div class="fixed left-0 top-0 z-90 w-full h-screen">
+    <div class="fixed left-0 w-full bg-surface-dark transition-all duration-500 top-[calc(theme(spacing.header-group-offset)-theme(spacing.header-offset))] h-[calc(100vh-theme(spacing.header-group-offset)+theme(spacing.header-offset))] md:top-0 md:h-screen"
+         data-test="modal-authorization-layout">
+        <div class="relative flex h-full w-full lg:mx-auto lg:max-w-1296">
+            <div class="h-10 px-2 min-w-fit box-border inline-flex cursor-pointer items-center justify-center rounded-default no-underline shadow-border bg-surface-light hover:bg-surface-middle transition-colors border-transparent fill-primary-white text-primary-white !rounded-full absolute right-[5%] top-4 z-30 md:right-8 md:top-8"
+                 data-category="Sign In line" data-action="Close login" data-test="close-button"><svg
+                    viewBox="0 0 24 24"
+                    class="shrink-0 order-2 box-border flex items-center justify-center fill-primary-white h-6 w-6">
+                <use xlink:href="#close_091148"></use>
+            </svg></div>
+            <div class="custom-scroll flex h-full w-full flex-col overflow-y-auto overflow-x-hidden md:max-w-[40%]">
+                <div class="mx-auto flex w-full max-w-[90%] flex-1 flex-col py-4 md:max-w-[75%] md:py-8">
+                    <div class="mt-8">
+                        <p class="text-primary-white typo-xl-1" data-test="authorization-modal__title">Login</p>
+                        <p class="mt-4 text-base font-normal text-grey-500">Need an account?<span
+                                class="ml-1 text-primary-orange-toxic transition-colors hover:cursor-pointer hover:text-primary-orange-toxic-hover"
+                                data-category="Sign In line" data-action="To registration from login"
+                                data-test="authorization-modal__registration-link">Sign up</span></p>
+                    </div>
+                    <div class="flex flex-wrap gap-x-3 gap-y-4 mt-8" id="signin-form-social-desk-1475901664"
+                         data-login-data="nocache=1;receiver=https://ggbbbet.net/api/auth/social/login?locale=en&amp;referer=https://ggbbbet.net/en;redirect_uri=%252Fen"
+                         data-category="Authorization social network" data-action="Sign In line"
+                         data-test="social-buttons"><a
+                            class="flex rounded-default p-2 transition socialButtonsItem_google__epGbz" href="#"
+                            data-x-login-button="google" data-category="Sign In line"
+                            data-action="Authorization via google"><svg viewBox="0 0 24 24"
+                                                                        class="shrink-0 mr-0 fill-primary-white h-6 w-6">
+                        <use xlink:href="#google_4991e2"></use>
+                    </svg></a></div>
+                    <form class="mt-8">
+                        <p class="text-sm font-normal transition text-grey-500 mb-1">Email / Phone:</p>
+                        <div class="relative mb-4">
+                            <div class="" data-test="base-input">
+                                <div class="relative"><input
+                                        class="h-12 w-full rounded-default bg-surface-input text-base outline outline-2 outline-offset-2 outline-transparent hover:text-primary-white focus:text-primary-white inputStyle_autofill__JlkiW pl-4 pr-12  text-grey-500 border-default border-surface-input placeholder:text-grey-500 hover:border-grey-700  focus:border-grey-700"
+                                        type="text" data-test="base-input__input" inputmode="text" placeholder=""
+                                        value="">
+                                    <div class="right-4 absolute top-3 flex"></div>
+                                </div>
+                            </div>
+                            <div
+                                    class="absolute z-10 mt-1 w-full rounded-default bg-surface-dark p-2 shadow-dropdown transition invisible opacity-0">
+
+                            </div>
+                        </div>
+                        <p class="text-sm font-normal transition text-grey-500 mb-1">Password:</p>
+                        <div class="mb-4">
+                            <div class="" data-test="base-input">
+                                <div class="relative"><input
+                                        class="h-12 w-full rounded-default bg-surface-input text-base outline outline-2 outline-offset-2 outline-transparent hover:text-primary-white focus:text-primary-white inputStyle_autofill__JlkiW pl-4 pr-[80px]  text-grey-500 border-default border-surface-input placeholder:text-grey-500 hover:border-grey-700  focus:border-grey-700"
+                                        type="password" data-test="base-input__input" inputmode="text" value="">
+                                    <div class="right-4 absolute top-3 flex"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-end mt-4"><span
+                                class="cursor-pointer text-sm font-normal text-grey-500 transition hover:text-primary-white"
+                                data-category="Sign In line" data-action="Click.log.in.form.forgot.password">Forgot
+                                    your password?</span></div><button
+                            class="h-12 px-3 min-w-fit box-border inline-flex cursor-pointer items-center justify-center rounded-default no-underline shadow-border bg-primary-orange-toxic hover:bg-primary-orange-toxic-hover transition-colors border-transparent fill-primary-white text-primary-white disabled:pointer-events-none disabled:cursor-default disabled:fill-grey-700 disabled:text-grey-700 disabled:bg-surface-middle mt-8 w-full"
+                            type="submit" disabled="" data-category="Sign In line" data-action="Login button"><span
+                            class="truncate typo-sm-2">LOGIN</span></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>

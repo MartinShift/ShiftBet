@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Information</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div th:replace="fragments/admin-header :: admin-header"></div>
+<div class="container">
+    <h1>Team Information</h1>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Wins</th>
+            <th>Loses</th>
+            <th>Draws</th>
+            <th>Logo</th>
+            <th>Country</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Iterate over team entities -->
+        <th:block th:each="team : ${teams}">
+            <tr>
+                <td th:text="${team.id}"></td>
+                <td th:text="${team.name}"></td>
+                <td th:text="${team.description}"></td>
+                <td th:text="${team.wins}"></td>
+                <td th:text="${team.loses}"></td>
+                <td th:text="${team.draws}"></td>
+                <td>
+                    <img th:src="${team.logoUrl}" alt="Team Logo" width="50">
+                </td>
+                <td>
+                    <img th:src="${team.country.flagUrl}" alt="Country Flag" width="30">
+                    <span th:text="${team.country.name}"></span>
+                </td>
+                <td>
+                    <a th:href="@{/team/edit/{id}(id=${team.id})}" class="btn btn-primary btn-sm">Edit</a>
+                    <a th:href="@{/team/delete/{id}(id=${team.id})}" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+    <a href="/team/add" class="btn btn-success">Add Team</a>
+</div>
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

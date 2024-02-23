@@ -27,11 +27,11 @@ public class Game {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "team1_id")
     private Team team1;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "team2_id")
     private Team team2;
 
@@ -48,7 +48,11 @@ public class Game {
     @OneToMany(mappedBy = "game", cascade = CascadeType.ALL)
     private List<Bet> bets;
 
-    private boolean isBettable;
+    public boolean isBettable() {
+        LocalDate currentDate = LocalDate.now();
+        return (currentDate.isAfter(beginningDate.toLocalDate()) || currentDate.isEqual(beginningDate.toLocalDate()))
+                && currentDate.isBefore(endDate.toLocalDate());
+    }
 
     @ManyToOne
     @JoinColumn(name = "subcategory_id")
