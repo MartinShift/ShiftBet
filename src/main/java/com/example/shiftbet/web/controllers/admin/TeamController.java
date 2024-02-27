@@ -31,33 +31,33 @@ public class TeamController {
         this.countryService = countryService;
         this.imageFileService = imageFileService;
     }
-    @GetMapping("/team/add")
+    @GetMapping("/admin/team/add")
     public String showAdd(Model model) {
         model.addAttribute("team", new Team());
         model.addAttribute("countries",countryService.getAll());
         return "admin/team/add";
     }
 
-    @GetMapping("/team/view")
+    @GetMapping("/admin/team/view")
     public String showAllSubcategories(Model model) {
         model.addAttribute("teams", teamService.getAll());
         return "admin/team/view";
     }
-    @PostMapping("/team/add")
+    @PostMapping("/admin/team/add")
     public String add(Team team, MultipartHttpServletRequest request) throws IOException {
          team.setLogoUrl(imageFileService.saveImage(request.getFile("image")));
          teamService.add(team);
-        return "redirect:/team/view";
+        return "redirect:/admin/team/view";
     }
 
-    @GetMapping("/team/edit/{id}")
+    @GetMapping("/admin/team/edit/{id}")
     public String showEditTeamForm(@PathVariable("id") int id, Model model) {
         model.addAttribute("team",  teamService.get(id));
         model.addAttribute("countries", countryService.getAll());
         return "admin/team/edit";
     }
 
-    @PostMapping("/team/edit")
+    @PostMapping("/admin/team/edit")
     public String editTeam(Team team, MultipartHttpServletRequest request) throws IOException {
         String url = imageFileService.saveImage(request.getFile("logo"));
         if(url != null)
@@ -65,12 +65,12 @@ public class TeamController {
              team.setLogoUrl(url);
         }
          teamService.update(team.getId(), team);
-        return "redirect:/team/view";
+        return "redirect:/admin/team/view";
     }
-    @GetMapping("/team/delete/{id}")
+    @GetMapping("/admin/team/delete/{id}")
     public String deleteTeam(@PathVariable("id") int id) {
          teamService.delete(id);
-        return "redirect:/team/view";
+        return "redirect:/admin/team/view";
     }
 }
 

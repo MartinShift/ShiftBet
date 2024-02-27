@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <style>
 
@@ -12,7 +12,7 @@
         <div class="mx-auto flex w-[90%] items-center" data-test="header__container">
             <div data-test="header__logo" class="flex-none">
                 <div class="flex items-center mr-4" data-category="" data-action="click"
-                     data-test="header-logo"><a data-test="header-logo__link" href="/uk-ua"><svg width="82"
+                     data-test="header-logo"><a data-test="header-logo__link" href="/"><svg width="82"
                                                                                                  height="32" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd"
                           d="M37.154 8s-.972 5.189-1.806 9.44h9.55c.59 0 1.041.538.937 1.128l-.139.608c-.104.555-.59.954-1.163.954l-3.073.018-.73 3.835h5.921a3.89 3.89 0 0 0 3.837-3.141c.065-.36.139-.723.212-1.083.066-.32.13-.638.187-.948.313-1.596-.99-2.794-2.621-2.794l.104-.52c1.684-.052 2.882-.92 3.195-2.586l.225-1.267C52.12 9.753 50.696 8 48.77 8H37.153Zm9.22 4.72-.053.33a1.336 1.336 0 0 1-1.302 1.076h-3.924l.452-2.412h3.993c.538.017.937.503.833 1.006ZM68.422 8l-.781 4.043h4.201l-2.291 11.94h5.173l2.292-11.94h4.22L82 8H68.423ZM51.651 21.952l2.24-11.904C54.117 8.868 55.158 8 56.339 8h10.712l-.78 4.06h-7.692l-.4 2.083h6.442l-.625 3.28h-6.459l-.486 2.551h8.872l-.764 3.991H53.335a1.7 1.7 0 0 1-1.684-2.013Z"
@@ -28,7 +28,7 @@
                         <div data-test="header-betting__menu-item"><a
                                 class="no-underline focus-visible:fill-grey-300 focus-visible:text-grey-300 focus-visible:outline-none flex cursor-pointer items-center rounded-default hover:bg-surface-middle active:fill-primary-orange-toxic active:text-primary-orange-toxic fill-primary-orange-toxic text-primary-orange-toxic mr-2 py-1 pr-2 pl-1"
                                 data-test="menu-tab-desktop menu-tab-desktop--active header-betting__item"
-                                href="/uk-ua"><svg viewBox="0 0 24 24" class="shrink-0 mr-1 h-6 w-6">
+                                href="/user/activeBets"><svg viewBox="0 0 24 24" class="shrink-0 mr-1 h-6 w-6">
                             <use xlink:href="#bets_6fde88"></use>
                         </svg><span class="ml-1 grow truncate uppercase typo-sm-2"
                                     data-test="menu-tab-desktop__content">Ставки</span></a></div>
@@ -40,25 +40,6 @@
                                 data-test="menu-tab-desktop__content">Акції</span></a></div>
                     </div>
 
-                </div>
-                <div id="betting-settings">
-                    <div class="relative z-2 hidden h-8 w-14 md:flex" data-test="header-betting-settings">
-                        <div class="pointer-events-none absolute right-0 w-[232px] overflow-hidden"
-                             data-test="header-betting-settings__wrapper">
-                            <div class="pointer-events-auto hidden h-full will-change-transform md:flex w-[232px] bg-surface-dark duration-500 ease-in-out translate-x-[73%]"
-                                 data-test="header-betting-setting__content">
-                                <div class="mr-2" title="Налаштування">
-                                    <div class="h-8 px-1 min-w-fit box-border inline-flex cursor-pointer items-center justify-center rounded-default no-underline shadow-border bg-surface-dark hover:bg-surface-middle transition-colors border-transparent fill-primary-white text-primary-white active:text-primary-orange-toxic"
-                                         data-test="header-betting-settings__button"><svg viewBox="0 0 24 24"
-                                                                                          class="shrink-0 mr-0 transition duration-300 -rotate-90 h-6 w-6">
-                                        <use xlink:href="#branch-more-up_107f56"></use>
-                                    </svg><svg viewBox="0 0 24 24" class="shrink-0 h-6 w-6">
-                                        <use xlink:href="#setting_006792"></use>
-                                    </svg></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="flex items-center" data-test="header-controls">
                     <div class="z-2 sm:relative mr-2 hidden md:flex" data-test="locale-switcher">
@@ -75,6 +56,7 @@
                             <use xlink:href="#branch-more-up_107f56"></use>
                         </svg>
                         </div>
+
                         <div class="absolute left-1/2 top-8 -translate-x-1/2 bg-surface-dark p-1 shadow-dropdown hidden"
                              data-test="locale-dropdown">
                             <div class="flex max-h-[256px] flex-col overflow-y-auto capitalize transition duration-300 localeDropdown_scroll__wChT4"
@@ -121,67 +103,46 @@
                                     </svg></div><span class="ml-1 grow truncate uppercase typo-sm-2"
                                                       data-test="menu-tab-desktop__content">Англійська</span>
                                 </div>
-                                <div class="flex cursor-pointer items-center rounded-default hover:bg-surface-middle active:fill-primary-orange-toxic active:text-primary-orange-toxic fill-primary-white text-primary-white py-1 pr-2 pl-1"
-                                     data-test="menu-tab-desktop locale-dropdown__list-item">
-                                    <div class="flex h-6 w-6 min-w-[24px] items-center justify-center"><img
-                                            alt="" loading="lazy" width="16" height="16" decoding="async"
-                                            data-nimg="1" src="/spa-assets/image/flags/ru.svg"
-                                            style="color: transparent;"></div><span
-                                        class="ml-1 grow truncate uppercase typo-sm-2"
-                                        data-test="menu-tab-desktop__content">Російська</span>
-                                </div>
-                                <div class="flex cursor-pointer items-center rounded-default hover:bg-surface-middle active:fill-primary-orange-toxic active:text-primary-orange-toxic fill-primary-white text-primary-white py-1 pr-2 pl-1"
-                                     data-test="menu-tab-desktop locale-dropdown__list-item">
-                                    <div class="flex h-6 w-6 min-w-[24px] items-center justify-center"><svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 85.333 512 341.333" data-flag-country-code="PL"
-                                            class="w-4" alt="flag">
-                                        <title>PL</title>
-                                        <g fill="#FFF">
-                                            <path d="M0 85.337h512v341.326H0z"></path>
-                                            <path d="M0 85.337h512V256H0z"></path>
-                                        </g>
-                                        <path fill="#D80027" d="M0 256h512v170.663H0z"></path>
-                                    </svg></div><span class="ml-1 grow truncate uppercase typo-sm-2"
-                                                      data-test="menu-tab-desktop__content">Польська</span>
-                                </div>
-                                <div class="flex cursor-pointer items-center rounded-default hover:bg-surface-middle active:fill-primary-orange-toxic active:text-primary-orange-toxic fill-primary-orange-toxic text-primary-orange-toxic py-1 pr-2 pl-1"
-                                     data-test="menu-tab-desktop menu-tab-desktop--active locale-dropdown__list-item">
-                                    <div class="flex h-6 w-6 min-w-[24px] items-center justify-center"><svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 85.333 512 341.333" data-flag-country-code="UA"
-                                            class="w-4" alt="flag">
-                                        <title>UA</title>
-                                        <path fill="#FFDA44" d="M0 85.337h512v341.326H0z"></path>
-                                        <path fill="#338AF3" d="M0 85.337h512V256H0z"></path>
-                                    </svg></div><span class="ml-1 grow truncate uppercase typo-sm-2"
-                                                      data-test="menu-tab-desktop__content">Українська</span>
-                                </div>
-                                <div class="flex cursor-pointer items-center rounded-default hover:bg-surface-middle active:fill-primary-orange-toxic active:text-primary-orange-toxic fill-primary-white text-primary-white py-1 pr-2 pl-1"
-                                     data-test="menu-tab-desktop locale-dropdown__list-item">
-                                    <div class="flex h-6 w-6 min-w-[24px] items-center justify-center"><svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 85.333 512 341.333" data-flag-country-code="RO"
-                                            class="w-4" alt="flag">
-                                        <title>RO</title>
-                                        <path fill="#FFDA44" d="M0 85.331h512v341.326H0z"></path>
-                                        <path fill="#0052B4" d="M0 85.331h170.663v341.337H0z"></path>
-                                        <path fill="#D80027" d="M341.337 85.331H512v341.337H341.337z">
-                                        </path>
-                                    </svg></div><span class="ml-1 grow truncate uppercase typo-sm-2"
-                                                      data-test="menu-tab-desktop__content">Румунська</span>
-                                </div>
-                            </div>
+                                     </div>
                         </div>
                     </div>
-                    <div class="mr-2 whitespace-nowrap">
+                    <form sec:authorize="!isAnonymous()" method="post" action="/auth/logout">
+                        <button  type="submit" class="h-8 px-1 min-w-fit box-border inline-flex cursor-pointer items-center justify-center rounded-default no-underline shadow-border bg-surface-dark hover:bg-surface-middle transition-colors border-transparent fill-primary-white text-primary-white active:text-primary-orange-toxic mr-2" data-test="logout">
+                            <img alt="logout photo" src="/images/logout.png" class="shrink-0 order-2 box-border flex items-center justify-center fill-primary-white h-6 w-6">
+
+                        </button>
+                    </form>
+                    <div    sec:authorize="isAnonymous()" class="mr-2 whitespace-nowrap">
                         <div class="h-8 px-2 min-w-fit box-border inline-flex cursor-pointer items-center justify-center rounded-default no-underline shadow-border bg-surface-dark hover:bg-surface-middle transition-colors border-transparent fill-primary-white text-primary-white active:text-primary-orange-toxic"
                              data-category="Header line" data-action="Open sign in popup"
-                             data-test="header-login"><span class="truncate typo-sm-2">ЛОГІН</span></div>
+                             data-test="header-login"><a href="/auth/login" class="truncate typo-sm-2"
+
+                        >ЛОГІН</a></div>
                     </div>
-                    <div class="h-8 px-2 min-w-fit box-border inline-flex cursor-pointer items-center justify-center rounded-default no-underline shadow-border bg-primary-orange-toxic hover:bg-primary-orange-toxic-hover transition-colors border-transparent fill-primary-white text-primary-white"
+                    <div sec:authorize="isAnonymous()" class="h-8 px-2 min-w-fit box-border inline-flex cursor-pointer items-center justify-center rounded-default no-underline shadow-border bg-primary-orange-toxic hover:bg-primary-orange-toxic-hover transition-colors border-transparent fill-primary-white text-primary-white"
                          data-category="Header line" data-action="Open sign up popup"
-                         data-test="header-register"><span class="truncate typo-sm-2">РЕЄСТРАЦІЯ</span></div>
+                         data-test="header-register"><a href="/auth/register" class="truncate typo-sm-2">РЕЄСТРАЦІЯ</a></div>
+
+
+
+                </div>
+                <div sec:authorize="!isAnonymous()" class="md:relative mr-2" data-test="header-balance">
+                    <div class="flex max-h-8 items-center rounded-default border-default border-surface-light cursor-pointer transition hover:bg-surface-middle px-4 py-2"
+                         data-test="header-balance__wrapper">
+            <span class="whitespace-nowrap text-primary-white typo-sm-2"
+                  data-test="header-balance__total">0.00 USD
+            </span>
+                    </div>
+                </div>
+                <div sec:authorize="!isAnonymous()"  class="h-8 px-2 min-w-fit box-border inline-flex cursor-pointer items-center justify-center rounded-default no-underline shadow-border bg-green-700 hover:bg-green-900 transition-colors border-transparent fill-primary-white text-primary-white hover:fill-grey-300 hover:text-grey-300"
+                     data-test="header-deposit">
+        <span class="truncate typo-sm-2"><span class="flex items-center" data-test="header-deposit__wrapper">
+                <span class="mr-2" data-test="header-deposit__text">DEPOSIT</span>
+            <img alt="plus" src="/images/plus.png" class="shrink-0 h-6 w-6">
+                    <use xlink:href="#operation-add_3a1d22"></use>
+                </img>
+            </span>
+        </span>
                 </div>
             </div>
         </div>

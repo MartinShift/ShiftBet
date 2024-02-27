@@ -26,7 +26,6 @@
         </tr>
         </thead>
         <tbody>
-        <!-- Iterate over team entities -->
         <th:block th:each="team : ${teams}">
             <tr>
                 <td th:text="${team.id}"></td>
@@ -43,16 +42,15 @@
                     <span th:text="${team.country.name}"></span>
                 </td>
                 <td>
-                    <a th:href="@{/team/edit/{id}(id=${team.id})}" class="btn btn-primary btn-sm">Edit</a>
-                    <a th:href="@{/team/delete/{id}(id=${team.id})}" class="btn btn-danger btn-sm">Delete</a>
+                    <a th:href="@{/admin/team/edit/{id}(id=${team.id})}" class="btn btn-primary btn-sm">Edit</a>
+                    <a th:href="@{/admin/team/delete/{id}(id=${team.id})}" class="btn btn-danger btn-sm">Delete</a>
                 </td>
             </tr>
         </th:block>
         </tbody>
     </table>
-    <a href="/team/add" class="btn btn-success">Add Team</a>
+    <a href="/admin/team/add" class="btn btn-success">Add Team</a>
 </div>
-<!-- Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

@@ -38,7 +38,7 @@ public class GameController {
         this.gameResultService = gameResultService;
     }
 
-    @GetMapping("/game/add")
+    @GetMapping("/admin/game/add")
     public String showAdd(Model model) {
         model.addAttribute("game", new Game());
         model.addAttribute("teams", teamService.getAll());
@@ -46,27 +46,27 @@ public class GameController {
         return "admin/game/add";
     }
 
-    @GetMapping("/game/active")
+    @GetMapping("/admin/game/active")
     public String showAll(Model model) {
         List<Game> games = gameService.getActiveGames();
         model.addAttribute("games", games);
         return "admin/game/active";
     }
-    @PostMapping("/game/add")
+    @PostMapping("/admin/game/add")
     public String add(Game game) {
         game.setCategory(game.getSubcategory().getParentCategory());
         gameService.add(game);
-        return "redirect:/game/active";
+        return "redirect:/admin/game/active";
     }
 
-    @GetMapping("/game/finished")
+    @GetMapping("/admin/game/finished")
     public String viewResults(Model model)
     {
         model.addAttribute("games",gameService.getFinishedGames());
         return "/admin/game/finished";
     }
 
-    @GetMapping("/game/result/{id}")
+    @GetMapping("/admin/game/result/{id}")
      public String viewResult(@PathVariable("id") int id, Model model)
     {
         var result = new GameResult();
@@ -75,33 +75,33 @@ public class GameController {
 
         return "admin/game/result";
     }
-    @PostMapping("/game/result")
+    @PostMapping("/admin/game/result")
     public String submitResult(GameResult gameResult)
     {
         gameResult.setGame(gameService.get(gameResult.getGame().getId()));
         gameService.distributeBets(gameResult);
         gameResultService.add(gameResult);
-        return "redirect:/game/finished";
+        return "redirect:/admin/game/finished";
     }
 
-    @GetMapping("/game/edit/{id}")
+    @GetMapping("/admin/game/edit/{id}")
     public String showEditForm(@PathVariable("id") int id, Model model) {
-        model.addAttribute("game", new Game());
+        model.addAttribute("game", gameService.get(id));
         model.addAttribute("teams", teamService.getAll());
         model.addAttribute("categories", categoryService.getAll());
         model.addAttribute("subcategories",subCategoryService.getAll());
         return "admin/game/edit";
     }
 
-    @PostMapping("/game/edit")
+    @PostMapping("/admin/game/edit")
     public String edit(Game game) throws IOException {
         gameService.update(game.getId(),game);
-        return "redirect:/game/active";
+        return "redirect:/admin/game/active";
     }
-    @GetMapping("/game/delete/{id}")
+    @GetMapping("/admin/game/delete/{id}")
     public String delete(@PathVariable("id") int id) {
         gameService.delete(id);
-        return "redirect:/game/active";
+        return "redirect:/admin/game/active";
     }
 
 

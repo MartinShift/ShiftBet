@@ -18,15 +18,16 @@ public class GameService {
     private final TeamRepository teamRepository;
     private final CategoryRepository categoryRepository;
     private final SubcategoryRepository subcategoryRepository;
-
+    private final  UserRepository userRepository;
     private final BetRepository betRepository;
     private final CountryRepository countryRepository;
     @Autowired
-    public GameService(GameRepository gameRepository, TeamRepository teamRepository, CategoryRepository categoryRepository, SubcategoryRepository subcategoryRepository, BetRepository betRepository, CountryRepository countryRepository) {
+    public GameService(GameRepository gameRepository, TeamRepository teamRepository, CategoryRepository categoryRepository, SubcategoryRepository subcategoryRepository, UserRepository userRepository, BetRepository betRepository, CountryRepository countryRepository) {
         this.gameRepository = gameRepository;
         this.teamRepository = teamRepository;
         this.categoryRepository = categoryRepository;
         this.subcategoryRepository = subcategoryRepository;
+        this.userRepository = userRepository;
         this.betRepository = betRepository;
         this.countryRepository = countryRepository;
     }
@@ -115,7 +116,8 @@ public class GameService {
     public void distributeBets(GameResult result)
     {
         Game game = result.getGame();
-        List<Bet> bets = result.getGame().getBets().stream().filter(s-> s.getBetType() == result.getWinBet()).toList();
+        List<Bet> bets = result.getGame().getBets();
+        List<Bet> winBets = bets.stream().filter(b-> b.getBetType() == result.getWinBet()).toList();
         double winCoefficient = 0;
         switch (result.getWinBet())
         {
@@ -124,8 +126,20 @@ public class GameService {
             case TEAM2_WIN -> winCoefficient = game.getTeam2Coefficient();
         }
 
-        //bets.forEach(b-> b.better.balance += b.amount * result.winCoefficient);
-        betRepository.deleteAll(bets);
+        double finalWinCoefficient = winCoefficient;
+        winBets.forEach(b-> b.getUser().addBalance(b.getAmount() * finalWinCoefficient));
+        bets.forEach(b-> b.setEnded(true));
+        betRepository.saveAll(bets);
+        List<User> users = bets.stream().map(Bet::getUser).distinct().toList();
+        userRepository.saveAll(users);
+    }
+    public List<Game> getCategoryGames(long categoryId)
+    {
+        return getActiveGames().stream().filter(g-> g.getCategory().getId() == categoryId).toList();
+    }
+    public List<Game> getSubcategoryGames(long subcategoryId)
+    {
+        return getActiveGames().stream().filter(g-> g.getSubcategory().getId() == subcategoryId).toList();
     }
     public List<Game> getActiveGames()
     {

@@ -34,4 +34,19 @@ public class BetService {
     {
         betRepository.deleteAll(bets);
     }
+
+    public void save(Bet bet)
+    {
+        betRepository.save(bet);
+    }
+
+    public Bet get(long id)
+    {
+        return  betRepository.findById(id).orElse(null);
+    }
+
+    public void remove(Bet bet)
+    {
+    betRepository.delete(bet);
+    }
 }

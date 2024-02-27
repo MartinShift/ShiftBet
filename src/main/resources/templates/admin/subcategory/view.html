@@ -11,7 +11,7 @@
 <div th:replace="fragments/admin-header :: admin-header"></div>
 <div class="container">
     <h2>Subcategories</h2>
-    <a href="/subcategory/add" class="btn btn-primary mb-3">Add Subcategory</a>
+    <a href="/admin/subcategory/add" class="btn btn-primary mb-3">Add Subcategory</a>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -27,8 +27,8 @@
             <td><img th:src="@{{imageUrl}(imageUrl=${subcategory.imageUrl})}" alt="Image" style="width: auto; max-height: 32px;"></td>
             <td th:text="${subcategory.parentCategory.name}"></td>
             <td>
-                <a th:href="@{/subcategory/edit/{id}(id=${subcategory.id})}" class="btn btn-primary btn-sm">Edit</a>
-                <a th:href="@{/subcategory/delete/{id}(id=${subcategory.id})}" class="btn btn-danger btn-sm">Delete</a>
+                <a th:href="@{/admin/subcategory/edit/{id}(id=${subcategory.id})}" class="btn btn-primary btn-sm">Edit</a>
+                <a th:href="@{/admin/subcategory/delete/{id}(id=${subcategory.id})}" class="btn btn-danger btn-sm">Delete</a>
             </td>
         </tr>
         </tbody>

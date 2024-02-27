@@ -10,7 +10,7 @@
 <div th:replace="fragments/admin-header :: admin-header"></div>
 <div class="container">
     <h1>Select Game Result</h1>
-    <form th:action="@{/game/result}" th:object="${gameResult}" method="post">
+    <form th:action="@{/admin/game/result}" th:object="${gameResult}" method="post">
         <input type="hidden" name="ownId" th:field="${id}">
         <input type="hidden" name="gameId" th:field="*{game.id}">
         <input type="text" class="form-control mt-3" th:value="*{game.title}" readonly>

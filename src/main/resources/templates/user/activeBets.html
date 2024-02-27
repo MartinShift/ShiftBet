@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <style>
+
+    </style>
+    <!-- <link rel="stylesheet" href="/css/styles.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+<div id="__next">
+    <div class="mx-auto max-w-[1984px]">
+        <div th:replace="fragments/header :: header"></div>
+        <div
+                class="fixed z-20 w-full max-w-[1984px] duration-500 ease-in-out translate-y-[-100%] top-[calc(theme(spacing.header-offset)]">
+        </div>
+        <main class="mb-8 min-h-[50vh]">
+            <div
+                    class="mt-4 flex flex-col justify-center md:mx-8 md:flex-row md:gap-6 xl:mx-auto xl:px-8 [@media(min-width:2560px)]:gap-[72px]">
+                <div class="md:h-[calc(100vh-theme(spacing.header-offset)-32px)] sticky md:top-[calc(theme(spacing.header-offset)+16px)] h-[300px] flex-1 md:max-w-[280px] xl:max-w-[320px]">
+                    <div style="position: relative; overflow: hidden; width: 100%; height: 100%;">
+                        <div style="position: absolute; inset: 0px; overflow: scroll; margin-right: -15px; margin-bottom: -15px;">
+                        </div>
+                        <div style="position: absolute; height: 6px; transition: opacity 200ms ease 0s; opacity: 0; right: 2px; bottom: 2px; left: 2px; border-radius: 3px; visibility: hidden;">
+                            <div style="position: relative; display: block; height: 100%; cursor: pointer; border-radius: inherit; background-color: rgba(0, 0, 0, 0.2); width: 0px;">
+                            </div>
+                        </div>
+                        <div style="position: absolute; width: 6px; transition: opacity 200ms ease 0s; opacity: 0; right: 2px; bottom: 2px; top: 2px; border-radius: 3px; visibility: visible;">
+                            <div style="position: relative; display: block; width: 100%; cursor: pointer; border-radius: inherit; background-color: rgba(0, 0, 0, 0.2); height: 321px; transform: translateY(0px);">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="z-1 flex-1 md:w-0">
+                    <div class="mx-2 h-full md:mx-0">
+                        <div class="transition-none">
+                            <div class="my-2 flex items-center justify-between md:my-0 md:mb-2">
+                                <div class="w-full md:max-w-[328px]">
+                                    <div class="flex w-full h-10 bg-surface-middle p-[2px] md:max-w-[356px]"><a
+                                            class=" flex items-center h-full w-full justify-center rounded-default p-1"
+                                            data-category="Filters - Live" data-action="Open" data-test="tabs"
+                                            href="/user/activeBets">
+                                        <div class="font-medium text-primary-white typo-sm-1">Active</div>
+                                    </a><a
+                                            class=" flex items-center h-full w-full justify-center rounded-default p-1"
+                                            data-category="Filters - Next-to-go" data-action="Open" data-test="tabs"
+                                            href="/user/betHistory">
+                                        <div class="font-medium text-primary-white typo-sm-1">Ended</div>
+                                    </a></div>
+                                </div>
+                                <div class="relative h-[36px] w-[145px]">
+                                    <div
+                                            class="absolute right-0 z-max mt-1 w-[180px] rounded-default bg-surface-middle p-2 shadow-dropdown hidden">
+                                        <div class="flex cursor-pointer items-center rounded-default p-1 hover:bg-surface-middle fill-primary-white text-primary-white hover:fill-grey-300 hover:text-grey-300 h-8 p-0 px-2 hover:bg-surface-light !text-primary-orange-toxic"
+                                             data-category="Line - Sport event" data-action="Line sorting"
+                                             data-label="RANK_PERSONALIZED" data-value="RANK_PERSONALIZED"
+                                             data-test="dropdown-element dropdown-element--active"><span
+                                                class="grow whitespace-nowrap typo-sm-2 line-clamp-1 w-full"
+                                                data-test="dropdown-element__content">Рекомендовані</span>
+                                            <div><svg viewBox="0 0 24 24"
+                                                      class="shrink-0 rotate-0 fill-primary-orange-toxic h-6 w-6">
+                                                <use xlink:href="#check_e11672"></use>
+                                            </svg></div>
+                                        </div>
+                                        <div class="flex cursor-pointer items-center rounded-default p-1 hover:bg-surface-middle fill-grey-500 text-grey-500 hover:fill-grey-300 hover:text-grey-300 h-8 p-0 px-2 hover:bg-surface-light"
+                                             data-category="Line - Sport event" data-action="Line sorting"
+                                             data-label="RANK_TOP" data-value="RANK_TOP"
+                                             data-test="dropdown-element">
+                                                <span class="grow whitespace-nowrap typo-sm-2 line-clamp-1 w-full"
+                                                      data-test="dropdown-element__content">Популярні</span>
+                                        </div>
+                                        <div class="flex cursor-pointer items-center rounded-default p-1 hover:bg-surface-middle fill-grey-500 text-grey-500 hover:fill-grey-300 hover:text-grey-300 h-8 p-0 px-2 hover:bg-surface-light"
+                                             data-category="Line - Sport event" data-action="Line sorting"
+                                             data-label="RANK_START_TIME" data-value="RANK_START_TIME"
+                                             data-test="dropdown-element"><span
+                                                class="grow whitespace-nowrap typo-sm-2 line-clamp-1 w-full"
+                                                data-test="dropdown-element__content">Час початку</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex-row align-middle" data-test="sport-event-list">
+                                <div th:each="bet : ${activeBets }" class="relative h-full w-full" data-test="sport-event-in-view-subscription">
+                                    <div class="mb-2"><a data-action="Click on link"
+                                                         href="/uk-ua/esports/tournament/res-regional-series-sea-02-02">
+                                        <div class="flex h-10 items-center gap-2 bg-surface-middle px-4 my-2"
+                                             data-test="tournament-header"><span
+                                                class="relative inline-flex h-6 w-6 shrink-0"><img alt="" loading="lazy"
+                                                                                                   width="24" height="24" decoding="async" data-nimg="1"
+                                                                                                   th:src="${bet.game.subcategory.imageUrl}"
+                                                                                                   style="color: transparent;"></span>
+                                            <div class="truncate text-primary-white typo-sm-1" data-test="tournament-name" th:text="${bet.game.title}"></div>
+                                        </div>
+                                    </a></div>
+
+                                    <div
+                                            class="after:absolute after:left-0 after:top-[48px] after:h-[1px] after:w-full after:bg-surface-dark after:content-[''] relative flex flex-col bg-surface-middle p-4 pt-0  mb-2 sm:h-[185px] sm:flex-row sm:gap-x-6 items-center">
+                                        <div class="flex h-full w-full">
+                                            <div class="flex w-0 grow flex-col items-start gap-4 bg-surface-middle">
+                                                <div class="flex h-12 items-center gap-4">
+                                                    <div class="flex h-12 items-center gap-2">
+                                                        <div data-action="Toggle favorite" data-label="add"
+                                                             data-test="favorite-button"><svg viewBox="0 0 24 24"
+                                                                                              class="shrink-0 cursor-pointer fill-primary-white h-6 w-6">
+                                                            <use xlink:href="#favorite-border_38883b"></use>
+                                                        </svg></div>
+                                                        <div class="text-sm text-grey-500 opacity-100">
+                                                            <div th:text="${#temporals.format(bet.game.endDate, 'HH:mm')}"></div>
+                                                            <div th:text="${#temporals.format(bet.game.endDate, 'dd MM')}"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                        class="flex h-full w-full items-center self-center bg-surface-middle  sm:self-start">
+                                                    <div class="mb-2 mt-1 flex w-full justify-between gap-4 sm:mt-0 sm:flex-col"
+                                                         data-action="Click on title">
+                                                        <div class="flex w-full min-w-0 items-center overflow-hidden gap-3 sm:gap-0 flex-col text-center sm:flex-row sm:text-start"
+                                                             data-test="competitor">
+                                                            <div>
+                                                                <div
+                                                                        class="flex items-center justify-center overflow-hidden rounded-full bg-surface-light h-10 w-10">
+                                                                    <div
+                                                                            class="flex max-h-[28px] min-h-[28px] min-w-[28px] max-w-[28px]">
+                                                                        <img alt="" loading="lazy" width="40" height="40"
+                                                                             decoding="async" data-nimg="1"
+                                                                             th:src="${bet.game.team1.logoUrl}"
+                                                                             style="color: transparent; object-fit: contain;">
+                                                                    </div>
+                                                                </div>
+                                                            </div><span
+                                                                class="mx-2 text-primary-white typo-sm-1 w-full truncate typo-sm-1"
+                                                                data-test="competitor-title" th:text="${bet.game.team1.name}"></span>
+                                                        </div>
+                                                        <div class="flex w-full min-w-0 items-center overflow-hidden gap-3 sm:gap-0 flex-col text-center sm:flex-row sm:text-start"
+                                                             data-test="competitor">
+                                                            <div>
+                                                                <div
+                                                                        class="flex items-center justify-center overflow-hidden rounded-full bg-surface-light h-10 w-10">
+                                                                    <div
+                                                                            class="flex max-h-[28px] min-h-[28px] min-w-[28px] max-w-[28px]">
+                                                                        <img alt="" loading="lazy" width="40" height="40"
+                                                                             decoding="async" data-nimg="1"
+                                                                             th:src="${bet.game.team2.logoUrl}"
+                                                                             style="color: transparent; object-fit: contain;">
+                                                                    </div>
+                                                                </div>
+                                                            </div><span
+                                                                class="mx-2 text-primary-white typo-sm-1 w-full truncate typo-sm-1"
+                                                                data-test="competitor-title" th:text="${bet.game.team2.name}"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex w-full overflow-hidden h-full">
+                                            <div class="flex w-full items-stretch" data-test="top-markets">
+                                                <div class="flex h-full w-full min-w-0 flex-1 flex-col sm:not-last:mr-2">
+                                                    <div class="flex h-full w-full flex-col self-stretch">
+                                                        <div class="hidden h-12 shrink-0 items-center sm:flex">
+                                                            <div
+                                                                    class="line-clamp-2 max-w-full overflow-hidden text-ellipsis font-normal text-primary-white typo-sm-1">
+                                                                1x2</div>
+                                                        </div>
+                                                        <div class="flex w-full overflow-hidden h-full">
+                                                            <div class="flex w-full items-stretch" data-test="top-markets">
+                                                                <div
+                                                                        class="flex h-full w-full min-w-0 flex-1 flex-col sm:not-last:mr-2">
+                                                                    <div class="flex h-full w-full flex-col self-stretch">
+                                                                        <div class="hidden h-12 shrink-0 items-center sm:flex">
+                                                                            <div
+                                                                                    class="line-clamp-2 max-w-full overflow-hidden text-ellipsis font-normal text-primary-white typo-sm-1">
+                                                                                Bet</div>
+                                                                        </div>
+                                                                        <div
+                                                                                class="flex h-full w-full pt-4 sm:h-0 sm:grow sm:flex-col">
+                                                                            <div  title="Team"
+                                                                                 class="flex min-w-0 flex-1 cursor-not-allowed rounded-default
+                                                                                 p-2 sm:h-0 sm:not-last:mr-0 bg-transparent
+                                                                                 sm:not-last:mb-1 not-last:mr-2 !cursor-pointer"
+                                                                                 data-category="Line - Sport event"
+                                                                                 data-action="Select odd"
+                                                                                 data-label="5:f1b4c32c-844f-4a48-b6e2-c27d25ea8643~20~3"
+                                                                                 data-test="odd-button   odd-button--is-active">
+                                                                                <div
+                                                                                        class="relative flex h-full w-full items-center justify-items-start">
+                                                                                    <div class="truncate capitalize text-primary-white typo-sm-2 mr-1"
+                                                                                         data-test="odd-button__title" th:text="${bet.betType.toString() == 'TEAM1_WIN' ? 'Team 1' :  (bet.betType.toString() == 'DRAW' ? 'Draw' : 'Team 2')}">
+                                                                                    </div>
+                                                                                    <div class="mr-1 shrink-0 typo-sm-1 text-violet-300"
+                                                                                         data-test="odd-button__result" th:text="${bet.betType.toString() == 'TEAM1_WIN' ? bet.game.team1Coefficient :  (bet.betType.toString() == 'DRAW' ? bet.game.drawCoefficient : bet.game.team2Coefficient) }">
+                                                                                    </div>
+                                                                                    <div class="ml-auto"></div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div
+                                                                        class="flex h-full w-full min-w-0 flex-1 flex-col sm:not-last:mr-2">
+                                                                    <div class="flex h-full w-full flex-col self-stretch">
+                                                                        <div class="hidden h-12 shrink-0 items-center sm:flex">
+                                                                            <div
+                                                                                    class="line-clamp-2 max-w-full overflow-hidden text-ellipsis font-normal text-primary-white typo-sm-1">
+                                                                                Amount</div>
+                                                                        </div>
+                                                                        <div
+                                                                                class="flex h-full w-full pt-4 sm:h-0 sm:grow sm:flex-col">
+                                                                            <div title="Amount"
+                                                                                 class="flex min-w-0 flex-1 cursor-not-allowed rounded-default p-2 sm:h-0 sm:not-last:mr-0 bg-transparent
+                                                                                  sm:not-last:mb-1 not-last:mr-2 !cursor-pointer"
+                                                                                 data-category="Line - Sport event"
+                                                                                 data-action="Select odd"
+                                                                                 data-label="5:f1b4c32c-844f-4a48-b6e2-c27d25ea8643~20~3"
+                                                                                 data-test="odd-button   odd-button--is-active">
+                                                                                <div
+                                                                                        class="relative flex h-full w-full items-center justify-items-start">
+                                                                                    <div class="truncate capitalize text-primary-white typo-sm-2 mr-1"
+                                                                                         data-test="odd-button__title" >Amount:
+                                                                                    </div>
+                                                                                    <div class="mr-1 shrink-0 typo-sm-1 text-violet-300"
+                                                                                         data-test="odd-button__result" th:text="${bet.amount} + ' USD'"  >
+                                                                                    </div>
+                                                                                    <div class="ml-auto"></div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div
+                                                                        class="flex h-full w-full min-w-0 flex-1 flex-col hidden md:block sm:not-last:mr-2">
+                                                                    <div class="flex h-full w-full flex-col self-stretch">
+                                                                        <div class="hidden h-12 shrink-0 items-center sm:flex">
+                                                                            <div
+                                                                                    class="line-clamp-2 max-w-full overflow-hidden text-ellipsis font-normal text-primary-white typo-sm-1">
+                                                                                Decline</div>
+                                                                        </div>
+                                                                        <div
+                                                                                class="flex h-full w-full pt-4 sm:h-0 sm:grow sm:flex-col">
+                                                                            <div title="Decline Bet"
+                                                                                 th:onclick="'declineBet(' + ${bet.id} + ')'"
+                                                                                 class="flex min-w-0 flex-1 cursor-not-allowed rounded-default p-2
+                                                                                 sm:h-0 sm:not-last:mr-0
+                                                                                 bg-red-900
+                                                                                 hover:bg-surface-dark sm:not-last:mb-1 not-last:mr-2 !cursor-pointer"
+                                                                                 data-category="Line - Sport event"
+                                                                                 data-action="Select odd"
+                                                                                 data-label="5:f1b4c32c-844f-4a48-b6e2-c27d25ea8643~20~3"
+                                                                                 data-test="odd-button   odd-button--is-active">
+                                                                                <div
+                                                                                        class="relative flex h-full text-center w-full items-center justify-items-start">
+                                                                                    <div class="truncate capitalize text-center text-primary-white typo-sm-2 mr-1"
+                                                                                         data-test="odd-button__title" th:text="${'Decline Bet'}">
+                                                                                    </div>
+                                                                                    <div class="ml-auto"></div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+    function declineBet(betId) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You want to remove your bet',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, remove it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`/user/declineBet?betId=${betId}`, {
+                    method: 'POST'
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(response.statusText);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        Swal.fire({
+                            title: 'Bet Removed',
+                            text: 'Your bet has been removed successfully!',
+                            icon: 'information'
+                        })
+                            .then(() =>{
+                               location.reload()
+                            });
+                    })
+                    .catch(error => {
+                        Swal.fire({
+                            title: 'Error',
+                            text: `Failed to remove the bet: ${error}`,
+                            icon: 'error'
+                        });
+                    });
+            }
+        });
+    }
+</script>
+</body>
+
+
+</html>

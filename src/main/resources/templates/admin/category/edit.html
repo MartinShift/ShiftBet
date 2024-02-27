@@ -11,15 +11,16 @@
 <div th:replace="fragments/admin-header :: admin-header"></div>
 <div class="container mt-5">
     <h2>Edit Category</h2>
-    <form action="/category/edit" method="POST">
+    <form action="/admin/category/edit" method="POST">
         <input type="hidden" name="id" th:value="${category.id}">
+        <input type="hidden" name="logoUrl" th:value="${category.imageUrl}">
         <div class="form-group">
             <label for="name">Name:</label>
             <input type="text" class="form-control" id="name" name="name" th:value="${category.name}" required>
         </div>
         <div class="form-group">
             <label for="image">Current Image:</label><br>
-            <img th:src="@{/images/{imageName}(imageName=${category.imageUrl})}" width="100" height="100" alt="Category Image">
+            <img id="image" th:src="@{/images/{imageName}(imageName=${category.imageUrl})}" width="100" height="100" alt="Category Image">
         </div>
         <div class="form-group">
             <label for="newImage">New Image:</label>

@@ -215,7 +215,7 @@
                                                         <div class="flex h-full w-full pt-4 sm:h-0 sm:grow sm:flex-col">
                                                             <div title="IHC Esports"
                                                                  th:class="|flex min-w-0 flex-1 cursor-not-allowed rounded-default p-2 sm:h-0 sm:not-last:mr-0 bg-surface-light hover:bg-surface-dark sm:not-last:mb-1 not-last:mr-2 hover:!bg-primary-white/[0.3]
-                                                                  ${result.winBet == T(com.example.shiftbet.domain.entity.enums.BetTypes).TEAM1_WIN ?  '!bg-green-900 hover:!bg-green-900'  : 'bg-gray-900 hover:bg-gray'}|"
+                                                                  ${result.winBet.toString() == 'TEAM1_WIN'  ?  '!bg-green-900 hover:!bg-green-900'  :  '!bg-gray-900 hover:!bg-gray-900' }|"
                                                                  data-action="Select odd"
                                                                  data-label="5:d83d4825-84cf-462d-884c-969f08a01270~20~1"
                                                                  data-test="odd-button  odd-button--is-loss ">
@@ -224,12 +224,12 @@
                                                                     <div class="truncate capitalize text-primary-white typo-sm-2 mr-1"
                                                                          data-test="odd-button__title" th:text="${result.game.team1.name}"></div>
                                                                      <div class="mr-1 shrink-0 typo-sm-1 text-violet-300 !text-grey-500"
-                                                                         data-test="odd-button__result" th:text="${result.winBet == T(com.example.shiftbet.domain.entity.enums.BetTypes).TEAM1_WIN ? 'Win' : 'Lose'}"></div>
+                                                                         data-test="odd-button__result" th:text="${result.winBet.toString() == 'TEAM1_WIN' ? 'Win' : 'Lose'}"></div>
                                                                 </div>
                                                             </div>
                                                             <div title="Нічия"
                                                                  th:class="|flex min-w-0 flex-1 cursor-not-allowed rounded-default p-2 sm:h-0 sm:not-last:mr-0 bg-surface-light hover:bg-surface-dark sm:not-last:mb-1 not-last:mr-2 hover:!bg-primary-white/[0.3]
-                                                                  ${result.winBet == T(com.example.shiftbet.domain.entity.enums.BetTypes).DRAW ?  '!bg-green-900 hover:!bg-green-900'  : 'bg-gray-900 hover:bg-gray'}|"
+                                                                  ${result.winBet.toString() == 'DRAW'  ?   '!bg-green-900 hover:!bg-green-900'  :  '!bg-gray-900 hover:!bg-gray-900' }|"
                                                                  data-action="Select odd"
                                                                  data-label="5:d83d4825-84cf-462d-884c-969f08a01270~20~2"
                                                                  data-test="odd-button  odd-button--is-loss ">
@@ -238,13 +238,13 @@
                                                                     <div class="truncate capitalize text-primary-white typo-sm-2 mr-1"
                                                                          data-test="odd-button__title">Draw</div>
                                                                     <div class="mr-1 shrink-0 typo-sm-1 text-violet-300 !text-grey-500"
-                                                                         data-test="odd-button__result" th:text="${result.winBet == T(com.example.shiftbet.domain.entity.enums.BetTypes).DRAW ? 'Win' : 'Lose'}"
+                                                                         data-test="odd-button__result" th:text="${result.winBet.toString() == 'DRAW'   ? 'Win' : 'Lose'}"
                                                                     ></div>
                                                                 </div>
                                                             </div>
                                                             <div title="Talon Esports"
                                                                  th:class="|flex min-w-0 flex-1 cursor-not-allowed rounded-default p-2 sm:h-0 sm:not-last:mr-0 bg-surface-light hover:bg-surface-dark sm:not-last:mb-1 not-last:mr-2 hover:!bg-primary-white/[0.3]
-                                                                  ${result.winBet == T(com.example.shiftbet.domain.entity.enums.BetTypes).TEAM2_WIN ? '!bg-green-900 hover:!bg-green-900' : '  !bg-gray-900 hover:!bg-gray-900'}|"
+                                                                  ${result.winBet.toString() == 'TEAM2_WIN' ?  '!bg-green-900 hover:!bg-green-900'  :  '!bg-gray-900 hover:!bg-gray-900' }|"
                                                                  data-action="Select odd"
                                                                  data-label="5:d83d4825-84cf-462d-884c-969f08a01270~20~3"
                                                                  data-test="odd-button odd-button--is-win  ">
@@ -253,7 +253,7 @@
                                                                     <div class="truncate capitalize text-primary-white typo-sm-2 mr-1"
                                                                          data-test="odd-button__title" th:text="${result.game.team2.name}"></div>
                                                                     <div class="mr-1 shrink-0 typo-sm-1 text-violet-300 !text-grey-500"
-                                                                         data-test="odd-button__result"   th:text="${result.winBet == T(com.example.shiftbet.domain.entity.enums.BetTypes).TEAM2_WIN ? 'Win' : 'Lose'}"></div>
+                                                                         data-test="odd-button__result"   th:text="${result.winBet.toString() == 'TEAM2_WIN' ? 'Win' : 'Lose'}"></div>
                                                                 </div>
                                                             </div>
                                                         </div>

@@ -11,7 +11,7 @@
 <div th:replace="fragments/admin-header :: admin-header"></div>
 <div class="container">
     <h2>Add Team</h2>
-    <form th:action="@{/team/add}" th:object="${team}" method="post" enctype="multipart/form-data">
+    <form th:action="@{/admin/team/add}" th:object="${team}" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="name">Name:</label>
             <input type="text" class="form-control" id="name" th:field="*{name}" required>

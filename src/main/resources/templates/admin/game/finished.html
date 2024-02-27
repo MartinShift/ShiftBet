@@ -27,9 +27,9 @@
                 <td th:text="${game.id}"></td>
                 <td th:text="${game.title}"></td>
                 <td th:text="${game.team1.name} + ' - ' + ${game.team1Coefficient}"></td>
-                <td th:text="${game.team1.name} + ' - ' + ${game.team2Coefficient}"></td>
+                <td th:text="${game.team2.name} + ' - ' + ${game.team2Coefficient}"></td>
                 <td>
-                    <a th:href="@{/game/result/{id}(id=${game.id})}" class="btn btn-primary btn-sm">Result</a>
+                    <a th:href="@{/admin/game/result/{id}(id=${game.id})}" class="btn btn-primary btn-sm">Result</a>
                 </td>
             </tr>
         </th:block>

@@ -25,5 +25,19 @@ public class Bet {
 
     private BetTypes betType;
 
-    //private User user;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    private boolean ended;
+
+    public boolean isWin()
+    {
+        if(ended)
+        {
+            return betType == game.getGameResult().getWinBet();
+        }
+        return false;
+    }
+
 }

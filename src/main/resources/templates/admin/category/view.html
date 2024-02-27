@@ -10,7 +10,7 @@
 <div th:replace="fragments/admin-header :: admin-header"></div>
 <div class="container mt-5">
     <h2>View Categories</h2>
-    <a href="/category/add" class="btn btn-primary mb-3">Add Category</a>
+    <a href="/admin/category/add" class="btn btn-primary mb-3">Add Category</a>
     <table class="table">
         <thead>
         <tr>
@@ -26,8 +26,8 @@
             <td th:text="${category.name}"></td>
             <td><img th:src="@{{imageName}(imageName=${category.imageUrl})}" width=auto; height="32" alt="Category Image"></td>
             <td>
-                <a th:href="@{/category/edit/{id}(id=${category.id})}" class="btn btn-primary btn-sm">Edit</a>
-                <a th:href="@{/category/delete/{id}(id=${category.id})}" class="btn btn-danger btn-sm">Delete</a>
+                <a th:href="@{/admin/category/edit/{id}(id=${category.id})}" class="btn btn-primary btn-sm">Edit</a>
+                <a th:href="@{/admin/category/delete/{id}(id=${category.id})}" class="btn btn-danger btn-sm">Delete</a>
             </td>
         </tr>
         </tbody>
