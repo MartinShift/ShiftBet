@@ -17,9 +17,6 @@
             <th>ID</th>
             <th>Name</th>
             <th>Description</th>
-            <th>Wins</th>
-            <th>Loses</th>
-            <th>Draws</th>
             <th>Logo</th>
             <th>Country</th>
             <th>Actions</th>
@@ -31,9 +28,6 @@
                 <td th:text="${team.id}"></td>
                 <td th:text="${team.name}"></td>
                 <td th:text="${team.description}"></td>
-                <td th:text="${team.wins}"></td>
-                <td th:text="${team.loses}"></td>
-                <td th:text="${team.draws}"></td>
                 <td>
                     <img th:src="${team.logoUrl}" alt="Team Logo" width="50">
                 </td>

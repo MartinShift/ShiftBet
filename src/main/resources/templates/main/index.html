@@ -5,6 +5,7 @@
     <style>
 
     </style>
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="/css/styles.css">
 </head>
@@ -28,11 +29,11 @@
                                 <div class="my-4 border-y-default border-surface-middle py-4">
                                     <div
                                             class="flex justify-between bg-surface-dark p-2 hover:bg-surface-middle pointer-events-none">
-                                        <div
+                                        <div th:text="BEST"
                                                 class="flex items-center gap-2 uppercase typo-sm-2 fill-primary-white text-primary-white">
                                             <svg viewBox="0 0 24 24" class="shrink-0 h-6 w-6">
                                                 <use xlink:href="#top-events_a760a3"></use>
-                                            </svg>Найкраще
+                                            </svg>
                                         </div>
                                     </div>
                                     <a  th:each="subcategory : ${subcategories}" class="flex gap-2 p-2 hover:bg-surface-middle"
@@ -57,7 +58,7 @@
                                 <svg viewBox="0 0 24 24" class="shrink-0 h-6 w-6">
                                     <use xlink:href="#cybersport_default_22b9dc"></use>
                                 </svg>
-                                <div>Усі види спорту</div>
+                                <div>ALL SPORT TYPES</div>
                             </div>
                         </a>
                             <div><a th:each="category : ${categories}" data-category="Filters - Categorizer" data-action="Open sport"
@@ -116,13 +117,13 @@
                                     <div class="flex w-full h-10 bg-surface-middle p-[2px] md:max-w-[356px]"><a
                                             class=" flex items-center h-full w-full justify-center rounded-default p-1"
                                             data-category="Filters - Live" data-action="Open" data-test="tabs"
-                                            href="/uk-ua/live">
+                                            href="/main/live">
                                         <div class="font-medium text-primary-white typo-sm-1">Live</div>
                                     </a><a
                                             class=" flex items-center h-full w-full justify-center rounded-default p-1"
                                             data-category="Filters - Next-to-go" data-action="Open" data-test="tabs"
-                                            href="/uk-ua/next-to-go">
-                                        <div class="font-medium text-primary-white typo-sm-1">Найближчі</div>
+                                            href="/main/next">
+                                        <div class="font-medium text-primary-white typo-sm-1">Closest</div>
                                     </a></div>
                                 </div>
                                 <div class="relative h-[36px] w-[145px]">
@@ -188,7 +189,7 @@
                                                                     </use>
                                                                 </svg></div>
                                                                 <div class=" text-sm text-grey-500">
-                                                                    <div>Команди</div>
+                                                                    <div>Teams</div>
                                                                     <div th:text="${#temporals.format(game.beginningDate,'dd:MM HH:mm')}+ ' - ' + ${#temporals.format(game.endDate,'HH:mm')}"></div>
                                                                 </div>
                                                             </div><svg viewBox="0 0 24 24"
@@ -223,7 +224,7 @@
                                                                     data-test="competitor-title" th:text="${game.team1.name}"></span>
                                                             </div>
                                                             </a>
-                                                            <a th:href="@{/team-view/{id}(id=${game.team2.id})}">
+                                                            <a th:href="@{/main/team-view/{id}(id=${game.team2.id})}">
                                                             <div class="flex w-full min-w-0 items-center overflow-hidden flex-row text-start"
                                                                  data-test="competitor">
                                                                      <div
@@ -356,7 +357,7 @@
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-
+<script src="/js/popup.js"></script>
 <script>
     function submitBet(gameId, betType) {
         Swal.fire({

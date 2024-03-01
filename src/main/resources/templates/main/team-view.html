@@ -28,28 +28,28 @@
                                 <div class="my-4 border-y-default border-surface-middle py-4">
                                     <div
                                             class="flex justify-between bg-surface-dark p-2 hover:bg-surface-middle pointer-events-none">
-                                        <div
-                                                class="flex items-center gap-2 uppercase typo-sm-2 fill-primary-white text-primary-white">
+                                        <div th:text="BEST"
+                                             class="flex items-center gap-2 uppercase typo-sm-2 fill-primary-white text-primary-white">
                                             <svg viewBox="0 0 24 24" class="shrink-0 h-6 w-6">
                                                 <use xlink:href="#top-events_a760a3"></use>
-                                            </svg>Найкраще
-                                        </div>
-                                    </div><a class="flex gap-2 p-2 hover:bg-surface-middle"
-                                             data-category="Filters - Featured" data-action="Select tournament"
-                                             href="/uk-ua/sports/tournament/uefa-champions-league-27-06">
-                                    <div
-                                            class="flex h-6 w-6 items-center justify-center rounded-default bg-surface-light">
-                                        <div class="h-[18px] w-[18px]"><img alt="" loading="lazy" width="18"
-                                                                            height="18" decoding="async" data-nimg="1"
-                                                                            src="//cdn.gin.bet/tournaments/thumb36x36_kisspng-uefa-champions-league-france-ligue-1-premier-leagu-league-5add7cce436565842675431524464846276162d902f1b2fbd458906231.png"
-                                                                            style="color: transparent; object-fit: contain;"></div>
-                                    </div>
-                                    <div class="flex flex-1 items-center overflow-hidden text-primary-white">
-                                        <div class="max-w-full truncate font-normal typo-sm-1">УЄФА Ліга
-                                            Чемпіонів
+                                            </svg>
                                         </div>
                                     </div>
-                                </a>
+                                    <a  th:each="subcategory : ${subcategories}" class="flex gap-2 p-2 hover:bg-surface-middle"
+                                        data-category="Filters - Featured" data-action="Select tournament"
+                                        th:href="@{/main/subcategory/{subcategoryId}(subcategoryId=${subcategory.id})}" >
+                                        <div
+                                                class="flex h-6 w-6 items-center justify-center rounded-default bg-surface-light">
+                                            <div class="h-[18px] w-[18px]"><img alt="" loading="lazy" width="18"
+                                                                                height="18" decoding="async" data-nimg="1"
+                                                                                th:src="${subcategory.imageUrl}"
+                                                                                style="color: transparent; object-fit: contain;"></div>
+                                        </div>
+                                        <div class="flex flex-1 items-center overflow-hidden text-primary-white">
+                                            <div class="max-w-full truncate font-normal typo-sm-1" th:text="${subcategory.name}">
+                                            </div>
+                                        </div>
+                                    </a>
                                 </div>
                             </div><a data-test="all-games" href="/uk-ua">
                             <div
@@ -57,11 +57,11 @@
                                 <svg viewBox="0 0 24 24" class="shrink-0 h-6 w-6">
                                     <use xlink:href="#cybersport_default_22b9dc"></use>
                                 </svg>
-                                <div>Усі види спорту</div>
+                                <div>ALL SPORT TYPES</div>
                             </div>
                         </a>
-                            <div><a data-category="Filters - Categorizer" data-action="Open sport"
-                                    href="/uk-ua?sportId=esports_counter_strike">
+                            <div><a th:each="category : ${categories}" data-category="Filters - Categorizer" data-action="Open sport"
+                                    th:href="@{/main/category/{categoryId}(categoryId=${category.id})}">
                                 <div class="flex cursor-pointer justify-between gap-2 overflow-hidden p-2 bg-surface-dark text-grey-500 hover:bg-surface-middle hover:text-primary-white"
                                      data-test="categorizer-sport-list-content">
                                     <div class="overflow-hidden flex items-center gap-2">
@@ -70,11 +70,11 @@
                                                     <span class="relative inline-flex h-6 w-6 shrink-0"><img alt=""
                                                                                                              loading="lazy" width="24" height="24" decoding="async"
                                                                                                              data-nimg="1"
-                                                                                                             src="/file/media:65d3b206c4fb20fdc67ba340bee095735023fe3690"
+                                                                                                             th:src="${category.imageUrl}"
                                                                                                              style="color: transparent;"></span>
                                         </div>
                                         <div class="truncate typo-sm-1"
-                                             data-test="categorizer-sport-list-content-title">Counter-Strike
+                                             data-test="categorizer-sport-list-content-title" th:text="${category.name}">
                                         </div>
                                     </div>
                                     <div class="flex items-center gap-2">
@@ -274,4 +274,6 @@
     </div>
 </div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="/js/popup.js"></script>
 

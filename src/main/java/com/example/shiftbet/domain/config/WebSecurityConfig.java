@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -19,6 +21,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.Properties;
 
 @EnableWebSecurity
 @Configuration
@@ -38,7 +42,6 @@ public class WebSecurityConfig {
     public AuthenticationManager authenticationManager() throws Exception {
         return authConfiguration.getAuthenticationManager();
     }
-
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         AuthenticationManagerBuilder builder = http.getSharedObject(AuthenticationManagerBuilder.class);
@@ -47,15 +50,10 @@ public class WebSecurityConfig {
         http
                 .authorizeHttpRequests(auth -> {
                     auth
-                          //  .requestMatchers("/admin/**").hasRole("ADMIN")
                             .requestMatchers("/admin/**").hasRole("ADMIN")
                             .requestMatchers("/user/**").hasAnyRole("USER","ADMIN")
-                            .requestMatchers("/main/**").permitAll()
-                            .requestMatchers("/").permitAll()
-                            .requestMatchers("/auth/**").permitAll()
-                            .requestMatchers("/css/**").permitAll()
-                            .requestMatchers("/images/**").permitAll()
-                            .anyRequest().permitAll();
+                            .requestMatchers("/main/**","/auth/**","/css/**","/images/**","/js/**","/locale/**","/").permitAll()
+                            .anyRequest().authenticated();
                 })
                 .formLogin(login -> {
                     login.loginPage("/auth/login")
@@ -85,7 +83,6 @@ public class WebSecurityConfig {
                 .sessionManagement(session -> {
                     session.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
                 })
-
                 .csrf(csrf->csrf.disable())
                 .authenticationManager(manager);
 

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div id="liqpay_checkout"></div>
+</div>
+<script src="//static.liqpay.ua/libjs/checkout.js" async></script>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var liqpayAmount = /*[[${liqpayAmount}]]*/;
+    window.LiqPayCheckoutCallback = function () {
+        LiqPayCheckout.init({
+            data: /*[[${liqpayData}]]*/,
+            signature: /*[[${liqpaySignature}]]*/,
+            embedTo: "#liqpay_checkout",
+            language: "uk",
+            mode: "embed" // embed || popup
+        }).on("liqpay.callback", function (data) {
+            fetch("/user/submittopup", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(
+                    {
+                        data: data.notify.data,
+                        signature: data.notify.signature,
+                        amount: liqpayAmount,
+                    }
+                )
+            })
+                .then(()=>{
+                    window.location.href="/";
+                })
+                .catch(error => {
+                    console.error("Fetch error:", error);
+                });
+        }).on("liqpay.ready", function (data) {
+            // ready
+        }).on("liqpay.close", function (data) {
+            // close
+        });
+    };
+    /*]]>*/
+</script>
+</body>
+
+</html>

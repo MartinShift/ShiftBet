@@ -66,6 +66,7 @@ public class GameController {
         return "/admin/game/finished";
     }
 
+
     @GetMapping("/admin/game/result/{id}")
      public String viewResult(@PathVariable("id") int id, Model model)
     {
@@ -101,6 +102,12 @@ public class GameController {
     @GetMapping("/admin/game/delete/{id}")
     public String delete(@PathVariable("id") int id) {
         gameService.delete(id);
+        return "redirect:/admin/game/active";
+    }
+
+    @GetMapping("/admin/game/finish/{id}")
+    public String finish(@PathVariable("id") int id) {
+        gameService.finish(id);
         return "redirect:/admin/game/active";
     }
 

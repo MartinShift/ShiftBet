@@ -1,5 +1,6 @@
 package com.example.shiftbet.web.controllers;
 
+import com.example.shiftbet.domain.aspect.Loggable;
 import com.example.shiftbet.domain.entity.Role;
 import com.example.shiftbet.domain.entity.User;
 import com.example.shiftbet.domain.service.AuthService;
@@ -9,9 +10,7 @@ import com.example.shiftbet.web.dto.GoogleTokenResponse;
 import com.example.shiftbet.web.dto.LoginRequest;
 import com.example.shiftbet.web.dto.RegistrationRequest;
 import com.example.shiftbet.web.dto.UserInfo;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.actuate.autoconfigure.observation.ObservationProperties;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -21,8 +20,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
 import java.util.Collections;
@@ -48,21 +45,11 @@ public class AuthController {
         return "/auth/login";
     }
 
-    @PostMapping("/auth/loginCallback")
-    public String loginCallback(HttpSession session)
-    {
-        LoginRequest request = (LoginRequest) session.getAttribute("loginRequest");
-        authService.authenticate(request.getEmail(), request.getPassword());
-        session.removeAttribute("loginRequest");
-        return "redirect:/main/view";
-    }
-
-
     @PostMapping("/auth/submitLogin")
-    public ModelAndView submitLogin(LoginRequest request, HttpSession session)
+    public String submitLogin(LoginRequest request)
     {
-        session.setAttribute("loginRequest", request);
-        return new ModelAndView("redirect:/auth/loginCallback");
+       authService.authenticate(request.getEmail(),request.getPassword());
+        return "redirect:/main/view";
     }
     @GetMapping("/auth/register")
     public String getRegisterForm(Model model)
@@ -72,14 +59,15 @@ public class AuthController {
     }
 
     @PostMapping("/auth/submitRegister")
-    public String registerUser(RegistrationRequest request) {
+    @Loggable
+    public String registerUser(RegistrationRequest request, Model model) {
         if (userService.emailExists(request.getEmail())) {
             return "redirect:/auth/register?message=email_exists";
         }
 
         userService.create(request.getEmail(),request.getPassword());
-        authService.authenticate(request.getEmail(),request.getPassword());
-        return "redirect:/main/view";
+        model.addAttribute("loginRequest",new LoginRequest(request.getEmail(),request.getPassword()));
+        return "/auth/login-submit";
     }
 
     @GetMapping("/auth/google")
@@ -92,7 +80,8 @@ public class AuthController {
     }
 
     @GetMapping("/auth/callback")
-    public ModelAndView googleCallback(@RequestParam("code") String code, HttpSession session)
+    @Loggable
+    public String googleCallback(@RequestParam("code") String code, Model model)
     {
         String tokenResponse = authService.exchangeCodeForAccessToken(code);
         UserInfo userInfo = authService.getUserInfo(tokenResponse);
@@ -105,8 +94,7 @@ public class AuthController {
         } else {
             userService.create(email, new BCryptPasswordEncoder().encode(password));
         }
-        authService.authenticate(email,password);
-        session.setAttribute("loginRequest", new LoginRequest(email,password));
-        return new ModelAndView("redirect:/auth/loginCallback");
+        model.addAttribute("loginRequest",new LoginRequest(email,password));
+        return "/auth/login-submit";
     }
 }

@@ -23,6 +23,7 @@
             <th>End Date</th>
             <th>Subcategory</th>
             <th>Actions</th>
+            <th>End</th>
         </tr>
         </thead>
         <tbody>
@@ -40,6 +41,10 @@
                 <td>
                     <a th:href="@{/admin/game/edit/{id}(id=${game.id})}" class="btn btn-primary btn-sm">Edit</a>
                     <a th:href="@{/admin/game/delete/{id}(id=${game.id})}" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+                <td>
+
+                    <a th:href="@{/admin/game/finish/{id}(id=${game.id})}" class="btn btn-warning btn-sm">End game</a>
                 </td>
             </tr>
         </th:block>

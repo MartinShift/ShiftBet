@@ -21,12 +21,6 @@ public class Team {
 
     private String description;
 
-    private int wins;
-
-    private int loses;
-
-    private int draws;
-
     private String logoUrl;
 
     @ManyToOne

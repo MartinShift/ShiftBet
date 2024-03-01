@@ -1,12 +1,13 @@
 package com.example.shiftbet.web.controllers;
 
-import com.example.shiftbet.domain.entity.Team;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import com.example.shiftbet.domain.service.*;
 import org.springframework.web.bind.annotation.PathVariable;
+
+import java.time.LocalDateTime;
 
 @Controller
 public class MainController {
@@ -33,11 +34,10 @@ public class MainController {
     @GetMapping("/main/view")
     public String index(Model model)
     {
-
         model.addAttribute("games",gameService.getActiveGames());
         model.addAttribute("categories",categoryService.getAll());
         model.addAttribute("subcategories",subCategoryService.getTopSubcategories());
-        return "index";
+        return "/main/index";
     }
     @GetMapping("/main/category/{categoryId}")
     public String viewCategoryGames(Model model, @PathVariable long categoryId)
@@ -45,7 +45,7 @@ public class MainController {
         model.addAttribute("games", gameService.getCategoryGames(categoryId ));
         model.addAttribute("categories",categoryService.getAll());
         model.addAttribute("subcategories",subCategoryService.getTopSubcategories());
-        return "index";
+        return "/main/index";
     }
     @GetMapping("/main/subcategory/{subcategoryId}")
     public String viewSubcategoryGames(Model model, @PathVariable long subcategoryId)
@@ -53,7 +53,7 @@ public class MainController {
         model.addAttribute("games", gameService.getSubcategoryGames(subcategoryId));
         model.addAttribute("categories",categoryService.getAll());
         model.addAttribute("subcategories",subCategoryService.getTopSubcategories());
-        return "index";
+        return "/main/index";
     }
 
     @GetMapping("/main/team-view/{id}")
@@ -61,8 +61,25 @@ public class MainController {
     {
         model.addAttribute("team",teamService.getTeam(id));
         model.addAttribute("teamResults",teamService.getTeamGames(id));
-        return "team-view";
+        model.addAttribute("categories",categoryService.getAll());
+        model.addAttribute("subcategories",subCategoryService.getTopSubcategories());
+        return "main/team-view";
     }
 
-
+    @GetMapping("/main/live")
+    public String live(Model model)
+    {
+        model.addAttribute("games",gameService.getActiveGames().stream().filter(s-> s.getBeginningDate().isBefore(LocalDateTime.now()) && s.isBettable()).toList());
+        model.addAttribute("categories",categoryService.getAll());
+        model.addAttribute("subcategories",subCategoryService.getTopSubcategories());
+        return "/main/index";
+    }
+    @GetMapping("/main/next")
+    public String next(Model model)
+    {
+        model.addAttribute("games",gameService.getActiveGames().stream().filter(s-> s.getBeginningDate().isAfter(LocalDateTime.now())).toList());
+        model.addAttribute("categories",categoryService.getAll());
+        model.addAttribute("subcategories",subCategoryService.getTopSubcategories());
+        return "/main/index";
+    }
 }

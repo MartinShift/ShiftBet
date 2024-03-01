@@ -21,8 +21,10 @@ public class GameService {
     private final  UserRepository userRepository;
     private final BetRepository betRepository;
     private final CountryRepository countryRepository;
+    
+    private final EmailService emailService;
     @Autowired
-    public GameService(GameRepository gameRepository, TeamRepository teamRepository, CategoryRepository categoryRepository, SubcategoryRepository subcategoryRepository, UserRepository userRepository, BetRepository betRepository, CountryRepository countryRepository) {
+    public GameService(GameRepository gameRepository, TeamRepository teamRepository, CategoryRepository categoryRepository, SubcategoryRepository subcategoryRepository, UserRepository userRepository, BetRepository betRepository, CountryRepository countryRepository, EmailService emailService) {
         this.gameRepository = gameRepository;
         this.teamRepository = teamRepository;
         this.categoryRepository = categoryRepository;
@@ -30,6 +32,14 @@ public class GameService {
         this.userRepository = userRepository;
         this.betRepository = betRepository;
         this.countryRepository = countryRepository;
+        this.emailService = emailService;
+    }
+
+    public void finish(long  id)
+    {
+    Game game = gameRepository.findById(id).orElse(null);
+    game.setEndDate(LocalDateTime.now().minusSeconds(1));
+    gameRepository.save(game);
     }
 
     public void initializeDatabase() {
@@ -108,9 +118,9 @@ public class GameService {
         gameRepository.save(category);
     }
     public void delete(long id) {
-        Game category = gameRepository.findById(id)
+        Game game = gameRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Category not found with id: " + id));
-        gameRepository.delete(category);
+        gameRepository.delete(game);
     }
 
     public void distributeBets(GameResult result)
@@ -128,10 +138,22 @@ public class GameService {
 
         double finalWinCoefficient = winCoefficient;
         winBets.forEach(b-> b.getUser().addBalance(b.getAmount() * finalWinCoefficient));
-        bets.forEach(b-> b.setEnded(true));
+        bets.forEach(b->
+                {
+                    b.setEnded(true);
+                    StringBuilder sb = new StringBuilder();
+                    sb.append("You" + (b.isWin() ?  "won " + (b.getAmount() * finalWinCoefficient) + " USD"  : "lost") + " bet on");
+                    sb.append("\"" + game.getTeam1() + " vs " + game.getTeam2() + "\" ");
+                    sb.append("with amount " + b.getAmount() + " USD\n");
+                    emailService.send(b.getUser().getUsername(),"Bet Result",sb.toString());
+                }
+        );
         betRepository.saveAll(bets);
         List<User> users = bets.stream().map(Bet::getUser).distinct().toList();
+
         userRepository.saveAll(users);
+        
+        
     }
     public List<Game> getCategoryGames(long categoryId)
     {

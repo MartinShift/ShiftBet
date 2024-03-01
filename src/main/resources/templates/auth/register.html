@@ -33,17 +33,16 @@
                                 data-category="Sign Up line" data-action="To login from registration"
                                 data-test="registration-modal__to-login">Login</span></a>
                     </div>
-                    <div class="flex flex-wrap gap-x-3 gap-y-4 mt-8" id="register-form-social-desk-1401019070"
+                    <div class="flex flex-wrap gap-x-3 gap-y-4 mt-8" id="signin-form-social-desk-1475901664"
                          data-login-data="nocache=1;receiver=https://ggbbbet.net/api/auth/social/login?locale=en&amp;referer=https://ggbbbet.net/en;redirect_uri=%252Fen"
-                         data-category="Registration social network" data-action="Sign Up line"
-                         data-test="social-buttons"><a
-                            class="relative flex rounded-default bg-primary-white p-2 transition hover:before:absolute hover:before:left-0 hover:before:top-0 hover:before:h-full hover:before:w-full hover:before:bg-[#000000]/20"
-                            href="#"><svg viewBox="0 0 24 24" class="shrink-0 fill-[#000000] h-6 w-6">
-                        <use xlink:href="#apple_568bb1"></use>
-                    </svg></a>
+                         data-category="Authorization social network" data-action="Sign In line"
+                         data-test="social-buttons"><a href="/auth/google" class="relative flex rounded-default bg-transparent
+                         transition hover:before:absolute hover:before:left-0 hover:before:top-0 hover:before:h-full hover:before:w-full hover:before:bg-[#000000]/20">
+                        <img src="/images/google-logo.png" alt="Google Logo" class="shrink-0 fill-[#000000]" style="width: 55px; height: 55px;">
+                    </a>
                     </div>
                     <form class="mt-8" method="post" th:object="${registrationRequest}"  action="/auth/submitRegister">
-                        <p class="text-sm font-normal transition text-grey-500 mb-1">Email / Phone:</p>
+                        <p class="text-sm font-normal transition text-grey-500 mb-1">Email:</p>
                         <div class="relative mb-4">
                             <div class="" data-test="base-input">
                                 <div class="relative"><input
