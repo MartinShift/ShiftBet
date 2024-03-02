@@ -45,7 +45,11 @@ public class TeamController {
     }
     @PostMapping("/admin/team/add")
     public String add(Team team, MultipartHttpServletRequest request) throws IOException {
-         team.setLogoUrl(imageFileService.saveImage(request.getFile("image")));
+        String url = imageFileService.saveImage(request.getFile("logo"));
+        if(url != null)
+        {
+            team.setLogoUrl(url);
+        }
          teamService.add(team);
         return "redirect:/admin/team/view";
     }

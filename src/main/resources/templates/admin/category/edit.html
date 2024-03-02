@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Category</title>
-    <!-- Bootstrap CSS -->
+    <link rel="icon" type="image/x-icon" href="/images/logo-icon.png">
+    <title>ShiftBet - Edit Category</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 <div th:replace="fragments/admin-header :: admin-header"></div>
 <div class="container mt-5">
     <h2>Edit Category</h2>
-    <form action="/admin/category/edit" method="POST">
+    <form action="/admin/category/edit" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="id" th:value="${category.id}">
         <input type="hidden" name="logoUrl" th:value="${category.imageUrl}">
         <div class="form-group">
@@ -19,12 +19,12 @@
             <input type="text" class="form-control" id="name" name="name" th:value="${category.name}" required>
         </div>
         <div class="form-group">
-            <label for="image">Current Image:</label><br>
+            <label for="image" >Current Image:</label><br>
             <img id="image" th:src="@{/images/{imageName}(imageName=${category.imageUrl})}" width="100" height="100" alt="Category Image">
         </div>
         <div class="form-group">
             <label for="newImage">New Image:</label>
-            <input type="file" class="form-control-file" id="newImage" name="newImage" accept="image/*">
+            <input type="file" class="form-control-file" id="newImage" name="image" accept="image/*">
         </div>
         <button type="submit" class="btn btn-primary">Update</button>
     </form>

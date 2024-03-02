@@ -142,7 +142,7 @@ public class GameService {
                 {
                     b.setEnded(true);
                     StringBuilder sb = new StringBuilder();
-                    sb.append("You" + (b.isWin() ?  "won " + (b.getAmount() * finalWinCoefficient) + " USD"  : "lost") + " bet on");
+                  //  sb.append("You" + (b.isWin() ?  "won " + (b.getAmount() * finalWinCoefficient) + " USD"  : "lost") + " bet on");
                     sb.append("\"" + game.getTeam1() + " vs " + game.getTeam2() + "\" ");
                     sb.append("with amount " + b.getAmount() + " USD\n");
                     emailService.send(b.getUser().getUsername(),"Bet Result",sb.toString());

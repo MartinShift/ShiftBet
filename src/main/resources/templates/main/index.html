@@ -7,7 +7,10 @@
     </style>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
+    <title>ShiftBet - Main</title>
     <link rel="stylesheet" href="/css/styles.css">
+    <link rel="icon" type="image/x-icon" href="/images/logo-icon.png">
+    <title>ShiftBet - Main</title>
 </head>
 
 <body>
@@ -396,7 +399,11 @@
                                 icon: 'success'
                             });
                         } else {
-                            window.location.href="https://www.youtube.com/watch?v=LIZ1q7MdnCE"
+                            Swal.fire({
+                                title: 'Success',
+                                text: 'Not enough Balance!',
+                                icon: 'error'
+                            });
                         }
                     })
                     .catch(error => {

@@ -49,9 +49,8 @@ public class Game {
     private List<Bet> bets;
 
     public boolean isBettable() {
-        LocalDate currentDate = LocalDate.now();
-        return (currentDate.isAfter(beginningDate.toLocalDate()) || currentDate.isEqual(beginningDate.toLocalDate()))
-                && currentDate.isBefore(endDate.toLocalDate());
+        LocalDateTime now = LocalDateTime.now();
+        return now.isBefore(endDate);
     }
 
     @ManyToOne
