@@ -1,6 +1,6 @@
-# Shift Tech
+# Shift Bet
 
-Welcome to the Shift Tech! We offer a wide range of products to meet your shopping needs.
+Welcome to the Shift Bet! We offer a wide range of products to meet your shopping needs.
 
 ![Logo](/images/logo.png)
 
